@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/tetriso/static/css/main.5f6eea48.css",
+    "main.js": "/tetriso/static/js/main.6d193408.js",
+    "static/js/787.d308b65b.chunk.js": "/tetriso/static/js/787.d308b65b.chunk.js",
+    "static/media/controls_and_scoring-w.png": "/tetriso/static/media/controls_and_scoring-w.2cf9d7e32418ceb8134c.png",
+    "static/media/logo3.png": "/tetriso/static/media/logo3.251c039a79be64511142.png",
+    "static/media/official.jpg": "/tetriso/static/media/official.b986c1a0ddaa70db398d.jpg",
+    "index.html": "/tetriso/index.html",
+    "main.5f6eea48.css.map": "/tetriso/static/css/main.5f6eea48.css.map",
+    "main.6d193408.js.map": "/tetriso/static/js/main.6d193408.js.map",
+    "787.d308b65b.chunk.js.map": "/tetriso/static/js/787.d308b65b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5f6eea48.css",
+    "static/js/main.6d193408.js"
+  ]
+}
