@@ -1,0 +1,20 @@
+
+/* Righteous */
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+
+:root {
+    --c1: rgb(28, 28, 28);
+    --c3: rgb(20, 20, 20);
+    --c2: rgb(64, 61, 66);
+    --c4: rgb(150, 150, 150);
+    --c5: rgb(215, 215, 215);
+    --c6: rgb(22, 22, 22);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
