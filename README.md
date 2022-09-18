@@ -3,11 +3,8 @@
 A personal project of Tetris like web optimized game.
 
 **Commands:**
-
-`npm start`
-
-`npm test`
-
+#### `npm start`
+#### `npm test`
 #### `npm run build`
 #### `npm run eject`
 
