@@ -2,17 +2,17 @@
 
 A personal project of Tetris like web optimized game.
 
+**Commands:**
 
-### `npm start`
+#### `npm start`
+#### `npm test`
+#### `npm run build`
+#### `npm run eject`
 
-### `npm test`
+#### `git add .`
+#### `git commit -m "smt"`
+#### `git push origin master`
 
-### `npm run build`
+## Website
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[Tetriso](https://kire27.github.io/tetriso/).
