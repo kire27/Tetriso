@@ -1,18 +1,30 @@
 {
   "files": {
-    "main.css": "/tetriso/static/css/main.5f6eea48.css",
-    "main.js": "/tetriso/static/js/main.6d193408.js",
+    "main.css": "/tetriso/static/css/main.23fcc979.css",
+    "main.js": "/tetriso/static/js/main.d2d58db5.js",
     "static/js/787.d308b65b.chunk.js": "/tetriso/static/js/787.d308b65b.chunk.js",
-    "static/media/controls_and_scoring-w.png": "/tetriso/static/media/controls_and_scoring-w.2cf9d7e32418ceb8134c.png",
+    "static/media/full-pixel-purple.jpg": "/tetriso/static/media/full-pixel-purple.1ec8917597b8b4374def.jpg",
     "static/media/logo3.png": "/tetriso/static/media/logo3.251c039a79be64511142.png",
-    "static/media/official.jpg": "/tetriso/static/media/official.b986c1a0ddaa70db398d.jpg",
+    "static/media/j_piece.png": "/tetriso/static/media/j_piece.e77c31fde5cb20b148d6.png",
+    "static/media/l_piece.png": "/tetriso/static/media/l_piece.36b41e903f4238c83a4e.png",
+    "static/media/o_piece.png": "/tetriso/static/media/o_piece.1934fc03776db4f9fc89.png",
+    "static/media/s_piece.png": "/tetriso/static/media/s_piece.a44407a47a9d8111f729.png",
+    "static/media/question-mark.png": "/tetriso/static/media/question-mark.e2eb4546b0c17325f3e3.png",
+    "static/media/z_piece.png": "/tetriso/static/media/z_piece.d964570a2b50e61f7149.png",
+    "static/media/t_piece.png": "/tetriso/static/media/t_piece.f28f0e72b9c012f6a98d.png",
+    "static/media/i_piece.png": "/tetriso/static/media/i_piece.0f2956833f00110f1907.png",
+    "static/media/github.png": "/tetriso/static/media/github.c2eeb8cd621ab59752f6.png",
+    "static/media/twitter.png": "/tetriso/static/media/twitter.c030807382edec2d76ab.png",
+    "static/media/options.png": "/tetriso/static/media/options.e37184c176190b10db45.png",
+    "static/media/empty_piece.png": "/tetriso/static/media/empty_piece.9b2818fb9a37bed4c5da.png",
+    "static/media/grid.png": "/tetriso/static/media/grid.0ec8d7505f5daa29cd35.png",
     "index.html": "/tetriso/index.html",
-    "main.5f6eea48.css.map": "/tetriso/static/css/main.5f6eea48.css.map",
-    "main.6d193408.js.map": "/tetriso/static/js/main.6d193408.js.map",
+    "main.23fcc979.css.map": "/tetriso/static/css/main.23fcc979.css.map",
+    "main.d2d58db5.js.map": "/tetriso/static/js/main.d2d58db5.js.map",
     "787.d308b65b.chunk.js.map": "/tetriso/static/js/787.d308b65b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5f6eea48.css",
-    "static/js/main.6d193408.js"
+    "static/css/main.23fcc979.css",
+    "static/js/main.d2d58db5.js"
   ]
 }
