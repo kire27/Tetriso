@@ -1,240 +1,161 @@
 
-.mainPage {
-    width: 100%;
-    background-color: var(--c1);
+.homepage {
+    background-image: url("../res/wallpapers/full-pixel-purple.jpg");
+    background-size: cover;
+    background-position: center;
     display:flex;
     flex-direction:column;
     align-items: center;
-    min-height:100vh;
+    min-height: 100vh;
+    /* min-width: 100vw; */
+    overflow-x: hidden;
 }
 
 
-.menuNavigation {
-    width: 75%;
-    height: 65px;
+.navbar {
+    width: 80%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-wrap: wrap;
     align-items: center;
+    gap: 1vw;
+    margin: 1rem;
+}
+.navbar div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.playButtons {
+    margin: 1.5vw;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    background-color: var(--c5);
+    font-size: 1.1rem;
+    font-family: Righteous;
+    color: black;
+    cursor: pointer;
+}
+.playButtons:hover {
+    background-color: white;
 }
 .gameLogo {
-    height: 45px;
-    width: auto;
+    min-height: 3.2rem;
+    height: 4vw;
+    max-height: 4rem;
     cursor: pointer;
-} 
-.navButtons * {
-    background-color: transparent;
-    border: none;
-    color: var(--c5);
-    margin-left: 20px;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
-    height: 61px;
-}
-.navButtons *:hover {
-    box-shadow: 0px 2px 0px 0px var(--c5);
-}
+    padding: 0 30px;
 
+} 
 
 .container {
-    width: 75%;
-    height: 100%;
+    width: 90vw;
+    max-width: 70rem;
     display: flex;
     flex-direction: column;
     flex: 1;
-    align-items: center;
-    justify-content: center;
-} 
-hr.navLine {
-    width: 100%;
-    height: 1px;
-    border: none;
-    margin: 0;
-    background-color: var(--c5);
+    padding: 1rem;
 }
-.gameContainer {
-    width: 100%;
-    height: 760px;
-    background-color: var(--c6);
-    margin: 30px;
-    overflow: auto;
-    border-radius: 30px;
-} 
-.gameContainer * {
-    width: 860px;
-    height: 750px;
-    margin: 0 auto;
-    display: flex;
-}
-.startMenu form {
-    height: 90%;
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    justify-content: center;
-    background-color: var(--c1);
-    border-radius: 30px;
-} div.startMenu form * {
-    margin-bottom: 5px;
-} img.gameLogoForm {
-    height: 100px;
-    width: auto;
-    padding: 15px 
-}
-h2.gTitle {
-    width: fit-content;
-    height: fit-content;
-    justify-self: center;
-    text-align: center;
-    font-size: 25px;
-    color: var(--c4);
-    margin-top: -15px;
-    padding-bottom: 20px;
-    font-family: 'Righteous';
-} 
-div.startMenu form input {
-    width: 50%;
-    height: 40px;
-    font-size: 20px;
-    padding: 10px 10px;
-    /* margin: 8px 0; */
-    border-radius: 5px;
-    box-sizing: border-box;
-    outline: none;
-    border: none;
-} button.startGameLevel {
-    width: 50%;
-    height: 40px;
-    background-color: orange;
-    font-size: 20px;
-    border-radius: 5px;
-    border: none;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-} button.startGameBtn {
-    width: 50%;
-    height: 50px;
-    background-color: green;
-    border: none;
-    font-size: 22px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    cursor: pointer;
-} table.highScores {
-    height: 200px;
-    width: 50%;
-    background-color: gainsboro;
-    overflow-y: auto;
-    overflow-x: hidden;
-    overflow-y: auto;
-    border-radius: 5px;
-}   table.highScores * {
-        /* table-layout: fixed; */
-        height: fit-content;
-        width: fit-content;
-        flex-direction: column;
-}
-    h2.highScoresTitle {
-        height: 20px;
-        width: 100%;
-        color: black;
-        margin-block-end: 0;
-        margin-block-start: 0;
-        margin: 3px;
-        font-size: 18px;
-        font-weight: 100;
-        font-family: Righteous;
-    }
-table.highScores::-webkit-scrollbar {
-    width: 0px;
-}
-table.globalHighScores {
-    height: 350px;
-    align-items: center;
-}
-
-img.menuOptions {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-    padding: 8px;
-    border-radius: 20px;
-    background-color: var(--c4);
-    cursor: pointer;
-} img.menuOptions:hover {
-    filter: brightness(1.3);
-}
-
-div.contentContainer {
-    width: 100%;
-    text-align: center;
-    /* align-items: center; */
-} div.contentOne {
-    display: flex;
-} div.contentOne * {
-    display: flex;
-    flex-direction: column;
-}
- div.contentOne div {
-    width:fit-content;
-}
-    
-.contentParagraph {
-    /* background-color: var(--c2); */
-    padding: 20px;
-    padding-bottom: 10px;
-} .contentContainer h1 {
-    padding: 0;
-    margin: 0;
-    font-size: 28px;
-    color: var(--c5);
-} .contentContainer p {
-    font-size: 15px;
-    color: var(--c4);
-} .contentContainer:last-of-type p {
-    text-align: left;
-} .contentContainer img {
-    width: 100%;
-} 
 
 
 footer.mainFooter {
-    position: relative;
     background-color: var(--c3);
     width: 100%;
-    height: 250px;
+    bottom: 0;
     display: flex;
     justify-content: center;
-    border-radius: 0 220px 0 0;
-} div.copyRights {
-    width: 80%;
+    column-gap: 10vw;
+    opacity: 0.82;
+    padding: 1rem;
+} 
+.footerIntro {
+    color: white;
+    font-family: Righteous;
+}
+.footerIntro > h3 {
+    font-size: 1.8rem;
+    margin: 0 0 1rem 0;
+}
+.footerIntro > h5 {
+    font-size: 1rem;
+    margin: 0 0 1rem 0;
+}
+.websiteSocials * {
+    margin-right: 0.6rem;
+    width: 2.5em;
+    border-radius: 50px;
+}
+.footerButtons {
     display: flex;
-    justify-content: left;
-    align-items: center;
-    padding: 20px;
-} .copyRights img {
-    height: 120px;
-} .copyRights p {
-    font-size: 15px;
-    padding-left: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.footerButtons * {
+    background-color: transparent;
+    border: none;
+    color: white;
+    margin: 0.5rem;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: Righteous;
+    cursor: pointer;
+    text-align: left;
+}
+.footerButtons *:hover {
     color: var(--c4);
+}
+
+
+.wrongPage {
+    font-size: 7vw;
+    font-family: Righteous;
+    color: white;
+    text-align: center;
+    opacity: 0.6;
 }
 
 
 ::-webkit-scrollbar {
-    width: 15px;
+    width: 0.7vw;
     height: 8px;
 }
 ::-webkit-scrollbar-track {
     background: var(--c3); 
 }
 ::-webkit-scrollbar-thumb {
-    background: var(--c4); 
+    background: var(--c2); 
 }  
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--c5); 
+    background: var(--c4); 
+}
+
+
+@media only screen and (min-width: 931px) {
+    .gameLogo {
+        border-right: 2px solid white;
+    }
+}
+
+@media only screen and (max-width: 930px) {
+    .contentContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+    .highScores {
+        min-width: 80vw;
+    }
+    .contentParagraphs {
+        min-width: 80vw;
+    }
+    .highScores {
+        height: 36vh;
+    }
+    .mainFooter {
+        flex-direction: column;
+        align-items: center;
+    }
+    .footerButtons {
+        flex-direction: row;
+    }
 }

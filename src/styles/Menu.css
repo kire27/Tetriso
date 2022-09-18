@@ -1,0 +1,86 @@
+
+
+.gameContainer {
+    width: 100%;
+    height: 760px;
+    background-color: var(--c6);
+    margin: 30px;
+    overflow: auto;
+    border-radius: 30px;
+}
+.gameContainer * {
+    width: 860px;
+    height: 750px;
+    margin: 0 auto;
+    display: flex;
+}
+.startMenu form {
+    height: 90%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    background-color: var(--c1);
+    border-radius: 30px;
+} div.startMenu form * {
+    margin-bottom: 5px;
+} img.gameLogoForm {
+    height: 100px;
+    width: auto;
+    padding: 15px 
+}
+h2.gTitle {
+    width: fit-content;
+    height: fit-content;
+    justify-self: center;
+    text-align: center;
+    font-size: 25px;
+    color: var(--c4);
+    margin-top: -15px;
+    padding-bottom: 20px;
+    font-family: 'Righteous';
+} 
+div.startMenu form input {
+    width: 50%;
+    height: 40px;
+    font-size: 20px;
+    padding: 10px 10px;
+    /* margin: 8px 0; */
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+} button.startGameLevel {
+    width: 50%;
+    height: 40px;
+    background-color: orange;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+} button.startGameBtn {
+    width: 50%;
+    height: 50px;
+    background-color: green;
+    border: none;
+    font-size: 22px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+} 
+
+img.menuOptions {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 20px;
+    background-color: var(--c4);
+    cursor: pointer;
+} img.menuOptions:hover {
+    filter: brightness(1.3);
+}

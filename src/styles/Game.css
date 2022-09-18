@@ -1,5 +1,9 @@
 /*~~~ SINGLE-PLAYER ~~~*/
-/* 
+
+html {
+    height: 100%;
+}
+
 body.tetrisSinglePlayerPage {
     margin: 20px;
 }
@@ -15,6 +19,7 @@ div.game {
 
 div.gamePlaygroundPart1 {
     height: 700px;
+    width: 300px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -34,23 +39,33 @@ div.gamePlaygroundPart1 {
 div.gameInfo {
     display: flex;
     flex-direction: column;
+    height: 200px;
+    width: 200px;
 } h4.gameInfoHeader {
     color: var(--c5);
     font-size: 20px;
-    justify-content: center;
-    margin: 0;
+    width: 100px;
+    /* justify-content: center; */
+    /* margin: 0; */
 } div.gameData {
     color: var(--c5);
     font-size: 30px;
-    justify-content: center;
+    /* justify-content: center; */
     padding: 5px 0;
+    width: 100px;
+}
+.miniMenu {
+    width: 100px;
 }
 div.miniMenu h4 {
     margin-bottom: 80px;
 } h2.username {
+    height: 100px;
+    width: 100px;
     color: white;
     font-size: 22px;
     margin-bottom: 10px;
+    
 } img.miniMenuIcons {
     width: 30px;
     height: 30px;
@@ -61,7 +76,10 @@ div.miniMenu h4 {
     cursor: pointer;
 }
 
-
+.gameOverMenu {
+    position: relative;
+    flex-direction: column;
+}
 
 h3#username {
     color: var(--c5);
@@ -78,6 +96,8 @@ h3#username {
     background-position: center center;
     margin: 0 10px;
     border:1px solid var(--c4);
+    height: 700px;
+    width: 350px;
 } 
 .nextBlocks {
     width: 170px;
@@ -91,7 +111,7 @@ h3#username {
 } .imgNextBlocks {
     width: 120px;
     height: 120px;
-} */
+} 
 
 
 /*~~~ MULTI-PLAYER ~~~*/
