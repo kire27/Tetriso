@@ -1,97 +1,70 @@
-import React from "react";
-import "../../styles/App.css";
+import React, { useEffect, useState } from "react";
+import "../../styles/Menu.css";
+import MpGame from "./mpGame";
 
 function Multiplayer() {
 
-    const RenderMultiPlayerMenu = () => {
-        return (
-            
-            <div className="startMenu">
-                <form>
-                    <img
-                        src={require("../../res/logo3.png")}
-                        className="gameLogoForm"
-                        alt="tetriso logo"
-                    />
-                    <h2 className="gTitle">Multi Player</h2>
+    const [gameOver, setGameOver] = useState(false);
+    const [startGame, setStartGame] = useState(false);
+    const [username, setUsername] = useState("");    
+    const [level, setLevel] = useState(1);
     
+
+    function GameOverMenu() {
+        return (
+            <div className="gameOverMenu">
+                <h1>Game Over</h1>
+                <h1 onClick={() => setGameOver(false)}>Restart</h1>
+                <h1 onClick={() => setGameOver(false)}>Menu</h1>
+            </div>
+        );
+    }
+
+
+    return (
+        <div id="gC" className="gameMenu">
+            {startGame ?
+                <MpGame />
+            :
+                <form>
+                    <h2 className="menuTitle">Multi Player</h2>
+
                     <input
-                        id="usernameInputM"
+                        id="usernameInputS"
+                        className="menuUsername"
+                        maxLength={5}
+                        style={{color: /^[a-zA-z]+$/.test(username)?"black":"red"}}
+                        onChange={e => setUsername(e.target.value)}
                         type="text"
                         placeholder="your username"
                     />
-    
-                    <button className="startGameLevel">level: </button>
-    
-                    <button id="startGameBtnM" className="startGameBtnM">
-                        start game
+
+                    <button 
+                        id="levelBtn" 
+                        className="menuLevel"
+                        onClick={e => {
+                            e.preventDefault();
+                            if (level===20) setLevel(1); 
+                            else setLevel(level===1?level+1:level+2);
+                        }}
+                    >
+                        {"LEVEL: "+level}
                     </button>
-    
-                    <img
-                        src={require("../../res/icons/options.png")}
-                        className="menuOptions"
-                        alt="options"
-                    />
+
+                    <button
+                        id="startGameBtnS"
+                        className="menuStartGame"
+                        onClick={e => {
+                            e.preventDefault();
+                            if(/^[a-zA-z]+$/.test(username)) setStartGame(true);
+                            else alert("Username has to contain only letters");
+                        }}
+                    >
+                        START GAME
+                    </button>
+
                 </form>
-                globalHighScores();
-            </div>
-        );
-    };
-
-    const RenderMultiPlayer = () => {
-        return (
-            <React.Fragment>
-                {/* {!usernameM.textContent ? <MpGame /> : alert("no")} */}
-            </React.Fragment>
-        );
-    };
-
-    return (
-        /*    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/style.css">
-        
-        <title>Document</title>
-    </head>*/
-    <div id="gC" className="gameContainer">
-
-        <body className="tetrisMultiPlayerPage">
-            <div>
-                <div id="gameScore1"></div>
-                <div id="gameScore2"></div>
-
-                <canvas
-                    id="canvas1"
-                    style={{ border: "1px solid #000000" }}
-                ></canvas>
-                <canvas
-                    id="canvas2"
-                    style={{ border: "1px solid #000000" }}
-                ></canvas>
-
-                <script
-                    type="text/javascript"
-                    src="../build/tetrisMP.js"
-                ></script>
-            </div>
-
-            <script>
-                {/*
-            window.addEventListener("keydown", function(e) {
-                if(e.code === "Space"|
-                    e.code === "ArrowUp"|
-                    e.code === "ArrowDown"|
-                    e.code === "ArrowLeft"|
-                    e.code === "ArrowRight") {
-                    e.preventDefault();
-                }
-            }, false);
-            
-            */}
-            </script>
-        </body>
+            } 
         </div>
     );
 }

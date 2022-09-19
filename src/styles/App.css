@@ -7,7 +7,6 @@
     flex-direction:column;
     align-items: center;
     min-height: 100vh;
-    /* min-width: 100vw; */
     overflow-x: hidden;
 }
 
@@ -26,6 +25,13 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+.gameLogo {
+    min-height: 3.2rem;
+    height: 4vw;
+    max-height: 4rem;
+    cursor: pointer;
+    padding: 0 30px;
+} 
 .playButtons {
     margin: 1.5vw;
     padding: 10px 20px;
@@ -36,18 +42,21 @@
     font-family: Righteous;
     color: black;
     cursor: pointer;
+    /* align-items: center; */
+    /* justify-content: center; */
+    text-align: center;
 }
 .playButtons:hover {
     background-color: white;
 }
-.gameLogo {
-    min-height: 3.2rem;
-    height: 4vw;
-    max-height: 4rem;
-    cursor: pointer;
-    padding: 0 30px;
+.settings {
+    /* display: grid; */
+    /* grid-row: 1; */
+    /* width: 1.1rem; */
+    background-color: var(--c4);
+    border: none;
+}
 
-} 
 
 .container {
     width: 90vw;
@@ -85,6 +94,9 @@ footer.mainFooter {
     margin-right: 0.6rem;
     width: 2.5em;
     border-radius: 50px;
+}
+.websiteSocials *:hover {
+    filter: brightness(0.72);
 }
 .footerButtons {
     display: flex;
@@ -131,13 +143,13 @@ footer.mainFooter {
 }
 
 
-@media only screen and (min-width: 931px) {
+@media only screen and (min-width: 1165px) {
     .gameLogo {
         border-right: 2px solid white;
     }
 }
 
-@media only screen and (max-width: 930px) {
+@media only screen and (max-width: 980px) {
     .contentContainer {
         flex-direction: column;
         align-items: center;

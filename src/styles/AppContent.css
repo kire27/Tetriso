@@ -1,9 +1,4 @@
 
-* {  /* TODO temporary */
-    color: white;
-}
-
-
 .contentContainer {
     display: flex;
     justify-content: center;
@@ -36,11 +31,9 @@
 
 .highScores {
     display: grid; /* TODO setup grid for table; grid direction*/
-    /* grid-column: span; */
     grid-template-rows: repeat(auto-fill, 30px);
     width: 20vw;
-    max-width: 20rem;
-    /* height: ; */
+    max-width: 20em;
     background-color: var(--c1);
     overflow-y: auto;
     border-radius: 5px;

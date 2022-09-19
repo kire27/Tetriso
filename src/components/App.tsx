@@ -33,6 +33,16 @@ function App() {
                     <Link to="/multiplayer" className="playButtons">
                         play multiplayer
                     </Link>
+
+                    {/* TODO on click make pop up with settings */}
+                    <button className="playButtons settings">  
+                        Settings
+                        {/* <img
+                            src={require("../res/icons/options.png")}
+                            className="settings"
+                            alt="settings"
+                        /> */}
+                    </button>
                 </div>
             </div>
 
