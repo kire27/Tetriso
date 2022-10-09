@@ -69,17 +69,16 @@
 
 
 footer.mainFooter {
-    background-color: var(--c3);
+    background-color: var(--c7o);
     width: 100%;
     bottom: 0;
     display: flex;
     justify-content: center;
     column-gap: 10vw;
-    opacity: 0.82;
     padding: 1rem;
 } 
 .footerIntro {
-    color: white;
+    color: var(--c5);
     font-family: Righteous;
 }
 .footerIntro > h3 {
@@ -94,9 +93,10 @@ footer.mainFooter {
     margin-right: 0.6rem;
     width: 2.5em;
     border-radius: 50px;
+    filter: brightness(0.90);
 }
 .websiteSocials *:hover {
-    filter: brightness(0.72);
+    filter: brightness(1);
 }
 .footerButtons {
     display: flex;
@@ -106,7 +106,7 @@ footer.mainFooter {
 .footerButtons * {
     background-color: transparent;
     border: none;
-    color: white;
+    color: var(--c5);
     margin: 0.5rem;
     text-decoration: none;
     font-size: 1rem;
@@ -115,7 +115,7 @@ footer.mainFooter {
     text-align: left;
 }
 .footerButtons *:hover {
-    color: var(--c4);
+    color: white;
 }
 
 

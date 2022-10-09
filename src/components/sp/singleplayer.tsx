@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../../styles/Menu.css";
 import SpGame from "./spGame";
 import { LocalDatabase } from "../../config/database-config";
@@ -21,11 +21,10 @@ function Singleplayer() {
         );
     }
 
-
     return (
         <div id="gC" className="gameMenu">
             {startGame ?
-                <SpGame />
+                <SpGame level={level} username={username} />
             :
                 <form>
                     <h2 className="menuTitle">Single Player</h2>
@@ -34,8 +33,8 @@ function Singleplayer() {
                         id="usernameInputS"
                         className="menuUsername"
                         maxLength={5}
-                        style={{color: /^[a-zA-z]+$/.test(username)?"black":"red"}}
-                        onChange={e => setUsername(e.target.value)}
+                        style={{color: /^[a-zA-z]{5}$/.test(username)?"black":"red"}}
+                        onChange={e => setUsername((e.target.value).toUpperCase())}
                         type="text"
                         placeholder="your username"
                     />
@@ -57,8 +56,8 @@ function Singleplayer() {
                         className="menuStartGame"
                         onClick={e => {
                             e.preventDefault();
-                            if(/^[a-zA-z]+$/.test(username)) setStartGame(true);
-                            else alert("Username has to contain only letters");
+                            if(/^[a-zA-z]{5}$/.test(username)) setStartGame(true);
+                            else alert("Username has to contain only letters and be 5 characters long!");
                         }}
                     >
                         START GAME

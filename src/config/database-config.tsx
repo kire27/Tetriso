@@ -63,7 +63,7 @@ export function LocalDatabase() {
     //TODO get only first 10
 
     return (
-        <div id="LocalhighScores" className="localHighScores">
+        <div id="LocalHighScores" className="localHighScores">
             <h2 className="highScoresTitle">
                 LOCAL HIGH SCORES: TOP 10
             </h2>

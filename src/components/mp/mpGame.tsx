@@ -70,22 +70,22 @@ function MpGame(props:any) {
         const blockImg6 = new Image();
         const blockImg7 = new Image();
 
-        blockImg1.src = require('../../res/a.png');
-        blockImg2.src = require('../../res/b.png');
-        blockImg3.src = require('../../res/c.png');
-        blockImg4.src = require('../../res/d.png');
-        blockImg5.src = require('../../res/e.png');
-        blockImg6.src = require('../../res/f.png');
-        blockImg7.src = require('../../res/g.png');
+        // blockImg1.src = require('../../res/a.png');
+        // blockImg2.src = require('../../res/b.png');
+        // blockImg3.src = require('../../res/c.png');
+        // blockImg4.src = require('../../res/d.png');
+        // blockImg5.src = require('../../res/e.png');
+        // blockImg6.src = require('../../res/f.png');
+        // blockImg7.src = require('../../res/g.png');
 
-        const blockPiece0 = require('../../res/empty_piece.png');
-        const blockPiece1 = require('../../res/i_piece.png');
-        const blockPiece2 = require('../../res/j_piece.png');
-        const blockPiece3 = require('../../res/l_piece.png');
-        const blockPiece4 = require('../../res/o_piece.png');
-        const blockPiece5 = require('../../res/s_piece.png');
-        const blockPiece6 = require('../../res/t_piece.png');
-        const blockPiece7 = require('../../res/z_piece.png'); 
+        // const blockPiece0 = require('../../res/empty_piece.png');
+        // const blockPiece1 = require('../../res/i_piece.png');
+        // const blockPiece2 = require('../../res/j_piece.png');
+        // const blockPiece3 = require('../../res/l_piece.png');
+        // const blockPiece4 = require('../../res/o_piece.png');
+        // const blockPiece5 = require('../../res/s_piece.png');
+        // const blockPiece6 = require('../../res/t_piece.png');
+        // const blockPiece7 = require('../../res/z_piece.png'); 
 
         const colors: object = {
             1: blockImg1,
@@ -151,16 +151,17 @@ function MpGame(props:any) {
         }
 
         function blockHolderChange(type: string): string {
-            switch (type) {
-                case "I": return blockPiece1;
-                case "J": return blockPiece2;
-                case "L": return blockPiece3;
-                case "O": return blockPiece4;
-                case "S": return blockPiece5;
-                case "T": return blockPiece6;
-                case "Z": return blockPiece7;
-                default: return blockPiece0;
-            }
+            // switch (type) {
+            //     case "I": return blockPiece1;
+            //     case "J": return blockPiece2;
+            //     case "L": return blockPiece3;
+            //     case "O": return blockPiece4;
+            //     case "S": return blockPiece5;
+            //     case "T": return blockPiece6;
+            //     case "Z": return blockPiece7;
+            //     default: return blockPiece0;
+            // }
+            return ""
         }
 
         function collide(arena: number[][], player: playerInterface, py: number) {

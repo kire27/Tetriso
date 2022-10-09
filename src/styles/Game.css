@@ -9,52 +9,49 @@ body.tetrisSinglePlayerPage {
 }
 
 div.game {
-    height: 100%;
-    width: 100%;
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    align-items: center;
 }
 
-div.gamePlaygroundPart1 {
+.gamePlaygroundPart1 {
     height: 700px;
-    width: 300px;
-    text-align: center;
+    width: 170px;
+    background-color: var(--c7o);
+    border-radius: 15px 0 0 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    text-align: center;
 }
 .blockHolder {
     width: 170px;
     height: 170px;
-    border:1px solid var(--c4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} #imgBlockHolder {
-    width: 120px;
-    height: 120px;
-}
-div.gameInfo {
     display: flex;
     flex-direction: column;
-    height: 200px;
-    width: 200px;
-} h4.gameInfoHeader {
+    align-items: center;
+    justify-content: center;
+} #ibh {
+    width: 120px;
+    height: 120px;
+} .hrBlockSeparator {
+    height: 1px;
+    width: 60%;
+    border: none;
+    background-color: var(--c4);
+    padding: 0;
+    margin: 0;
+}
+.gameInfo {
     color: var(--c5);
-    font-size: 20px;
-    width: 100px;
-    /* justify-content: center; */
-    /* margin: 0; */
-} div.gameData {
-    color: var(--c5);
-    font-size: 30px;
-    /* justify-content: center; */
-    padding: 5px 0;
-    width: 100px;
+    font-size: 2em;
+    font-family: Righteous;
+    font-weight: 1;
+    margin: 0;
 }
 .miniMenu {
+    display: flex;
+    justify-content: center;
     width: 100px;
 }
 div.miniMenu h4 {
@@ -94,15 +91,20 @@ h3#username {
     background-size: cover;                      
     background-repeat: no-repeat;
     background-position: center center;
+    background-color: var(--c7o);
     margin: 0 10px;
-    border:1px solid var(--c4);
     height: 700px;
     width: 350px;
 } 
+#canvasBlockHolder {
+    margin: 0;
+    padding: 0;
+}
 .nextBlocks {
     width: 170px;
     height: 700px;
-    border:1px solid var(--c4);
+    background-color: var(--c7o);
+    border-radius: 0 15px 15px 0;
     overflow: hidden;
     display: flex;
     justify-content: space-evenly;

@@ -1,15 +1,9 @@
-import React, {
-    LegacyRef,
-    MutableRefObject,
-    useEffect,
-    useRef,
-    useState,
-} from "react";
+import React from "react";
 import { Routes, Route, Link, Outlet } from "react-router-dom";
 import "../styles/App.css";
 import Singleplayer from "./sp/singleplayer";
 import Multiplayer from "./mp/multiplayer";
-import { HomeContent, Contact, Login, Register, Support } from "./AppContent";
+import { HomeContent, Contact, Login, Register, Support } from "./AppComponents";
 
 function App() {
     // const [gameStatus, setGameStatus] = useState("spm");
