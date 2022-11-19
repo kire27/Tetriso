@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tetriso/static/css/main.4613c8d6.css",
-    "main.js": "/tetriso/static/js/main.1786127b.js",
+    "main.css": "/tetriso/static/css/main.03dc22ac.css",
+    "main.js": "/tetriso/static/js/main.b07976d5.js",
     "static/js/787.d308b65b.chunk.js": "/tetriso/static/js/787.d308b65b.chunk.js",
     "static/media/full-pixel-purple.jpg": "/tetriso/static/media/full-pixel-purple.1ec8917597b8b4374def.jpg",
     "static/media/logo3.png": "/tetriso/static/media/logo3.251c039a79be64511142.png",
@@ -19,12 +19,12 @@
     "static/media/empty_piece.png": "/tetriso/static/media/empty_piece.9b2818fb9a37bed4c5da.png",
     "static/media/grid.png": "/tetriso/static/media/grid.0ec8d7505f5daa29cd35.png",
     "index.html": "/tetriso/index.html",
-    "main.4613c8d6.css.map": "/tetriso/static/css/main.4613c8d6.css.map",
-    "main.1786127b.js.map": "/tetriso/static/js/main.1786127b.js.map",
+    "main.03dc22ac.css.map": "/tetriso/static/css/main.03dc22ac.css.map",
+    "main.b07976d5.js.map": "/tetriso/static/js/main.b07976d5.js.map",
     "787.d308b65b.chunk.js.map": "/tetriso/static/js/787.d308b65b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4613c8d6.css",
-    "static/js/main.1786127b.js"
+    "static/css/main.03dc22ac.css",
+    "static/js/main.b07976d5.js"
   ]
 }
