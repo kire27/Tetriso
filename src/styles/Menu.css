@@ -73,3 +73,35 @@
     width: 2px;
 }
 
+
+/* Game Over Menu */
+.gameOverMenu {
+    display: flex;
+    align-items: center;
+}
+.gameOverHeaders {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--c7o);
+    border-radius: 15px;
+    width: 350px;
+    height: 700px;
+}
+.gameOverHeaders h1 {
+    font-family: Righteous;
+    color: var(--c5);
+    font-size: 3em;
+}
+.gameOverHeaders h2 {
+    margin: 0;
+    padding: 15px 0;
+    font-family: Righteous;
+    font-size: 2em;
+    color: var(--c5);
+    cursor: pointer;
+}
+.gameOverHeaders h2:hover {
+    background-color: var(--c6);
+}

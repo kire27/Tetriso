@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../styles/Menu.css";
 import SpGame from "./spGame";
 import { LocalDatabase } from "../../config/database-config";
+import { Link } from "react-router-dom";
 
 function Singleplayer() {
 
@@ -14,17 +15,25 @@ function Singleplayer() {
     function GameOverMenu() {
         return (
             <div className="gameOverMenu">
-                <h1>Game Over</h1>
-                <h1 onClick={() => setGameOver(false)}>Restart</h1>
-                <h1 onClick={() => setGameOver(false)}>Menu</h1>
+                <div className="gameOverHeaders">
+                    <h1>Game Over</h1>
+                    <h2 onClick={() => setGameOver(false)}>Restart</h2>
+                    <h2 onClick={() => setStartGame(false)}> Menu </h2>
+                </div>
             </div>
         );
     }
 
     return (
         <div id="gC" className="gameMenu">
-            {startGame ?
-                <SpGame level={level} username={username} />
+            { startGame ?
+                <div>
+                    { gameOver ? 
+                        <GameOverMenu />
+                    : 
+                        <SpGame level={level} username={username} setGameOver={setGameOver} />
+                    }
+                </div>
             :
                 <form>
                     <h2 className="menuTitle">Single Player</h2>
@@ -56,7 +65,10 @@ function Singleplayer() {
                         className="menuStartGame"
                         onClick={e => {
                             e.preventDefault();
-                            if(/^[a-zA-z]{5}$/.test(username)) setStartGame(true);
+                            if(/^[a-zA-z]{5}$/.test(username)) {
+                                setStartGame(true);
+                                setGameOver(false);
+                            }
                             else alert("Username has to contain only letters and be 5 characters long!");
                         }}
                     >
@@ -64,7 +76,6 @@ function Singleplayer() {
                     </button>
 
                     <LocalDatabase />
-
                 </form>
             } 
         </div>

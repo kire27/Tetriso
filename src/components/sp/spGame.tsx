@@ -50,9 +50,10 @@ export default function SpGame(props: any) {
 
             if (keyIsDown > 0) keyIsDown--; //TODO make better mechanics
 
-            if (frameCount > 
-                dropIntervals[player.level > 20 ? 20 : player.level]) 
-            {
+            if (
+                frameCount >
+                dropIntervals[player.level > 20 ? 20 : player.level]
+            ) {
                 playerDown();
                 frameCount = 0;
             }
@@ -131,26 +132,26 @@ export default function SpGame(props: any) {
     };
 
     const dropIntervals = {
-        "1": 200,
-        "2": 180,
-        "3": 160,
-        "4": 140,
-        "5": 120,
-        "6": 100,
-        "7": 90,
-        "8": 80,
-        "9": 70,
-        "10": 60,
-        "11": 50,
-        "12": 45,
-        "13": 40,
-        "14": 35,
-        "15": 30,
-        "16": 25,
-        "17": 20,
-        "18": 15,
-        "19": 10,
-        "20": 5,
+        1: 130,
+        2: 120,
+        3: 110,
+        4: 100,
+        5: 90,
+        6: 80,
+        7: 70,
+        8: 60,
+        9: 50,
+        10: 40,
+        11: 35,
+        12: 30,
+        13: 25,
+        14: 20,
+        15: 15,
+        16: 12,
+        17: 9,
+        18: 6,
+        19: 3,
+        20: 1,
     } as any;
 
     const playerControls = {
@@ -164,7 +165,7 @@ export default function SpGame(props: any) {
         rotateRight: "ArrowUp",
     };
 
-    const { ...rest } = props;
+    const { setGameOver, username, level, ...rest } = props;
     const canvasRef = useRef();
     const canvasBlockHolderRef = useRef();
     const canvasBlockNextRef = useRef();
@@ -177,8 +178,8 @@ export default function SpGame(props: any) {
     const pieces = "IJLOSTZ";
 
     const player = {
-        username: props.username,
-        level: props.level as number,
+        username: username,
+        level: level as number,
         levelBreak: 200,
         score: 0,
         pos: { x: 4, y: -6, sy: 19 },
@@ -401,7 +402,7 @@ export default function SpGame(props: any) {
         context.drawImage(blockImgs.bih, 0, 0, canvas.width, canvas.width);
     }
 
-    function drawNextBlocks(context: any, canvas: any, bnS:number) {
+    function drawNextBlocks(context: any, canvas: any, bnS: number) {
         const cw = canvas.width;
 
         blockImgs.bin1.src = blockHolderChange(player.followingMatrixes[0]);
@@ -412,10 +413,10 @@ export default function SpGame(props: any) {
 
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.drawImage(blockImgs.bin1, 0, 0, cw, cw);
-        context.drawImage(blockImgs.bin2, 0, bnS*1, cw, cw);
-        context.drawImage(blockImgs.bin3, 0, bnS*2, cw, cw);
-        context.drawImage(blockImgs.bin4, 0, bnS*3, cw, cw);
-        context.drawImage(blockImgs.bin5, 0, bnS*4, cw, cw);
+        context.drawImage(blockImgs.bin2, 0, bnS * 1, cw, cw);
+        context.drawImage(blockImgs.bin3, 0, bnS * 2, cw, cw);
+        context.drawImage(blockImgs.bin4, 0, bnS * 3, cw, cw);
+        context.drawImage(blockImgs.bin5, 0, bnS * 4, cw, cw);
     }
 
     function drawShadow() {
@@ -429,6 +430,7 @@ export default function SpGame(props: any) {
         player.matrix.forEach((row, y) => {
             row.forEach((value, x) => {
                 if (value !== 0) {
+                    console.log("merge: ", y, x);
                     arena[y + player.pos.y][x + player.pos.x] = value;
                 }
             });
@@ -469,7 +471,10 @@ export default function SpGame(props: any) {
                 player.matrix,
                 player.holdBlock,
             ];
-        // [player.pos.x, player.pos.y] = [4, -6]; //TODO bug
+
+        [player.pos.x, player.pos.y] = [4, 0];
+
+        console.log(player.pos.x, player.pos.y);
 
         player.useHolder = false;
     }
@@ -497,8 +502,8 @@ export default function SpGame(props: any) {
             player.score = 0;
             player.level = 1;
             keyIsDownDuration = 70;
-            // setGameOver(true); TODO
             updateScore();
+            setGameOver(true);
         }
     }
 
@@ -529,22 +534,18 @@ export default function SpGame(props: any) {
         else matrix.reverse();
     }
 
-    // function startGame() {
-    //     return true;
-    // }
+    function startGame() {
+        return true;
+    }
 
     function updateScore() {
         const { score, level, levelBreak } = player;
+
         if (score >= levelBreak) {
             player.level = level + Math.floor(score / 200);
             player.levelBreak = levelBreak + 200;
         }
 
-        // if (player.level >= player.level) {
-        //     keyIsDownDuration = keyIsDownDuration - player.level;
-        //     dropInterval = dropInterval - player.level * 60;
-        //     player.levelup++;
-        // }
         document.getElementById("gameScore")!.innerText =
             player.score.toString();
         document.getElementById("gameLevel")!.innerText =
