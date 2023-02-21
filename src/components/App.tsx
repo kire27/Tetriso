@@ -5,6 +5,10 @@ import Singleplayer from "./sp/singleplayer";
 import Multiplayer from "./mp/multiplayer";
 import { HomeContent, Contact, Login, Register, Support } from "./AppComponents";
 
+import img_github from "../res/icons/github.png";
+import img_logo3 from "../res/logo3.png";
+import img_twitter from "../res/icons/twitter.png";
+
 function App() {
     // const [gameStatus, setGameStatus] = useState("spm");
     // const [usernameInput, setUsernameInput] = useState("");
@@ -14,7 +18,7 @@ function App() {
             <div id="nL" className="navbar">
                 <Link to="/">
                     <img
-                        src={require("../res/logo3.png")}
+                        src={img_logo3}
                         className="gameLogo"
                         alt="logo"
                     />
@@ -31,11 +35,6 @@ function App() {
                     {/* TODO on click make pop up with settings */}
                     <button className="playButtons settings">  
                         Settings
-                        {/* <img
-                            src={require("../res/icons/options.png")}
-                            className="settings"
-                            alt="settings"
-                        /> */}
                     </button>
                 </div>
             </div>
@@ -72,13 +71,13 @@ function App() {
                     <div className="websiteSocials">
                         <a href="https://twitter.com/?lang=en">
                             <img
-                                src={require("../res/icons/twitter.png")}
+                                src={img_twitter}
                                 alt="twitter"
                             />
                         </a>
                         <a href="https://github.com/kire27/tetriso/tree/main">
                             <img
-                                src={require("../res/icons/github.png")}
+                                src={img_github}
                                 alt="github"
                             />
                         </a>

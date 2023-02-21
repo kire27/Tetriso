@@ -5,6 +5,23 @@
 import React, { useRef, useEffect } from "react";
 import "../../styles/Game.css";
 
+import img_empty_piece from "../../res/empty_piece.png";
+import img_i_piece from "../../res/i_piece.png";
+import img_j_piece from "../../res/j_piece.png";
+import img_l_piece from "../../res/l_piece.png";
+import img_o_piece from "../../res/o_piece.png";
+import img_s_piece from "../../res/s_piece.png";
+import img_t_piece from "../../res/t_piece.png";
+import img_z_piece from "../../res/z_piece.png";
+
+import img_i_aqua from "../../res/i-aqua.png";
+import img_j_green from "../../res/j-green.png";
+import img_l_blue from "../../res/l-blue.png";
+import img_o_purple from "../../res/o-purple.png";
+import img_s_orange from "../../res/s-orange.png";
+import img_t_red from "../../res/t-red.png";
+import img_z_yellow from "../../res/z-yellow.png";
+
 export default function SpGame(props: any) {
     useEffect(() => {
         window.addEventListener(
@@ -76,24 +93,24 @@ export default function SpGame(props: any) {
     });
 
     const blockPieces = {
-        bp0: require("../../res/empty_piece.png"),
-        bp1: require("../../res/i_piece.png"),
-        bp2: require("../../res/j_piece.png"),
-        bp3: require("../../res/l_piece.png"),
-        bp4: require("../../res/o_piece.png"),
-        bp5: require("../../res/s_piece.png"),
-        bp6: require("../../res/t_piece.png"),
-        bp7: require("../../res/z_piece.png"),
+        bp0: img_empty_piece,
+        bp1: img_i_piece,
+        bp2: img_j_piece,
+        bp3: img_l_piece,
+        bp4: img_o_piece,
+        bp5: img_s_piece,
+        bp6: img_t_piece,
+        bp7: img_z_piece,
     };
 
     const blockColors = {
-        bc1: require("../../res/i-aqua.png"),
-        bc2: require("../../res/j-green.png"),
-        bc3: require("../../res/l-blue.png"),
-        bc4: require("../../res/o-purple.png"),
-        bc5: require("../../res/s-orange.png"),
-        bc6: require("../../res/t-red.png"),
-        bc7: require("../../res/z-yellow.png"),
+        bc1: img_i_aqua,
+        bc2: img_j_green,
+        bc3: img_l_blue,
+        bc4: img_o_purple,
+        bc5: img_s_orange,
+        bc6: img_t_red,
+        bc7: img_z_yellow,
     };
 
     const blockImgs = {
@@ -947,19 +964,6 @@ export default function SpGame(props: any) {
                 </h4>
 
                 <h2 className="gameInfo">{player.username}</h2>
-
-                <div className="miniMenu">
-                    <img
-                        src={require("../../res/icons/options.png")}
-                        className="miniMenuIcons"
-                        alt="options"
-                    />
-                    <img
-                        src={require("../../res/icons/question-mark.png")}
-                        className="miniMenuIcons"
-                        alt="help"
-                    />
-                </div>
             </div>
 
             {/* <SpGame setGameOver={setGameOver} /> */}
