@@ -68,20 +68,6 @@ function App() {
                 <div className="footerIntro">
                     <h3>Tetriso</h3>
                     <h5>A project of Tetris like web optimized game.</h5>
-                    <div className="websiteSocials">
-                        <a href="https://twitter.com/?lang=en">
-                            <img
-                                src={img_twitter}
-                                alt="twitter"
-                            />
-                        </a>
-                        <a href="https://github.com/kire27/tetriso/tree/main">
-                            <img
-                                src={img_github}
-                                alt="github"
-                            />
-                        </a>
-                    </div>
                 </div>
                 <div className="footerButtons">
                     <Link to="/Contact" id="cB" className="ContactButton">
