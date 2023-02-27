@@ -176,10 +176,10 @@ function Game() {
                         <h2 className="highScoresTitle">
                             LOCAL HIGH SCORES
                         </h2>
-                        <LocalDatabase  
+                        {/* <LocalDatabase  
                             username={username}
                             score={score}
-                        />
+                        /> */}
                     </div>
                 </div>
                 }
@@ -190,7 +190,7 @@ function Game() {
 function GameOverMenu(props: any) {
     const { username, score, setGameOver, setStartGame, setCookies } = props;
 
-    updateCookies(username, score);
+    // updateCookies(username, score);
 
     return (
         <div className="gameOverMenu">
