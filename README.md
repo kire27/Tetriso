@@ -13,54 +13,48 @@ A personal project of Tetris like web optimized game.
 #### `git push origin master`
 #### `npm run build`
 #### `gh-pages -d build`
-##
+
 ## Website
 
 [Tetriso](https://www.tetriso.haam.space/).
 
 
 
-a
+
+
+https://reactrouter.com/en/main/getting-started/tutorial
+https://v5.reactrouter.com/web/guides/quick-start
+
+
+https://firebase.google.com/docs/firestore/query-data/get-data
+https://firebase.google.com/docs/firestore/manage-data/add-data
+
+
 
 
 TODO
 
+
 # cosmetic
 
-add license notice in footer
-
-make the background stop flickering (resizing) on changing sub page (when clicked single player or multiplayer)
-    or make it repeatable
-
-change the color scheme on high scores global and local table
+change tetris block images
 
 on main homepage make the text shorter and more visible with styling. 
-[play singleplayer] and [play multiplayer] buttons could have neon like styling to glow on hover with circling animation around the border
 
 replace all icons with svg react icons
 
 in game add animation when block piece drops 
 
+make a smooth small pop up in game menu that the text was copied
 
 # interface 
 
-remove settings button. there will be no settings as a option
-
-remove contact us and support us buttons in footer
-
-remove twitter link in footer
-
-in game remove settings and question mark icons
-
-make the whole game horizontal for originality.
-    playground1 (score and block holder) will be above main playground
-    playground2 (next blocks) will be under main playground 
-playground will be separated on 2 halves 
-    user can clear rows in each half separately, but when both halves are cleared at the same time user will get double the score
-
-local score will show only top 10
+user will join the mode depending on id key he will have available next to game. 
 
 global score will show top 100
+
+(maybe) on mobile screen the whole page will rotate
+    https://w3c.github.io/screen-orientation/
 
 
 # gameplay
@@ -78,6 +72,7 @@ in multiplayer in match there will be two playground next to each other
 add a delay in which the next pieces will start to fall
     the delay will get shorter as the level goes up
 
+be able to pause game
 
 # database
 
@@ -95,3 +90,19 @@ in database save random pixel images as user profile pictures
 
 find used material and tetris tutorial, add them into github readme resources for this project 
 
+
+
+
+
+RESOURCES
+
+text glitch effect
+Tee Diang
+https://codepen.io/acupoftee
+
+
+clip path maker
+https://bennettfeely.com/clippy/
+
+generate random string
+https://stackoverflow.com/a/27747377/15749280

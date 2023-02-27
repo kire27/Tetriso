@@ -1,0 +1,57 @@
+
+/* Righteous font */
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap')
+
+@font-face 
+    font-family: 'cyberway'
+    src: url("../assets/fonts/CyberwayRiders.ttf") format(opentype)
+
+@font-face 
+    font-family: "alienworld"
+    src: url("../assets/fonts/AlienWorld.ttf") format(opentype)
+
+
+$cd1: white
+$cd2: black
+$c1: rgb(28, 28, 28)
+$c3: rgb(20, 20, 20)
+$c2: rgb(64, 61, 66)
+$c4: rgb(150, 150, 150)
+$c5: rgb(215, 215, 215)
+$c6: rgb(73, 40, 104)
+$c7o: rgba(20, 20, 20, .82)
+
+$c-main: #ff00dd
+$c-secondary1: rgb(0, 255, 185)
+$c-secondary2: #ffff00
+$c-dark: #001122
+$c-red: rgb(255, 0, 0)
+$c-white: #fff
+$c-black: #000
+
+$s-title: clamp(4.4rem, 10vw + 1rem, 15rem)
+$s-undertitle: clamp(0.1rem, 1vw + 0.5rem, 1.5rem)
+$s-undertitlePadding: clamp(0.5rem, 2vw + 1rem, 2rem)
+
+$f-cyberway: "cyberway"
+$f-alienworld: "alienworld"
+
+
+html
+    scroll-behavior: smooth
+
+body 
+    margin: 0
+    padding: 0
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+
+#root
+    display: flex
+    flex-direction: column
+    background: $c-dark
+    align-items: center
+    min-height: 100vh
+    font-family: $f-alienworld
+
+
