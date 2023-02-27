@@ -120,7 +120,7 @@ export function GlobalDatabase() {
 //                         <div className="scoreTableTwo">{value.username}</div>
 //                         <div className="scoreTableThree">{value.score}</div>
 //                     </div>
-//                 : <div></div>
+//                 : <div></div> //TODO in production built. Probably this div section just to return JSX.element creates the error -> restyle the divs
 //             ))}
 //         </React.Fragment>
 //     );
