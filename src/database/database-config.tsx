@@ -41,90 +41,90 @@ export function GlobalDatabase() {
 }
 
 
-export function LocalDatabase(props: any): JSX.Element {
+// export function LocalDatabase(props: any): JSX.Element {
      
-    // const { username, score } = props;
+//     // const { username, score } = props;
 
 
-    const localDataTable: object[] = 
-        JSON.parse(localStorage.getItem("localScore")!) || ""
+//     const localDataTable: object[] = 
+//         JSON.parse(localStorage.getItem("localScore")!) || ""
 
-    // if (!localDataTable) return <div></div>
+//     // if (!localDataTable) return <div></div>
 
-    // console.log(localDataTable);  
+//     // console.log(localDataTable);  
 
-    // if (localDataTable && cookies) {
-    //     const id = localDataTable.length;
+//     // if (localDataTable && cookies) {
+//     //     const id = localDataTable.length;
         
-    //     // localDataTable[id] = {username: score};
-    //     localDataTable.sort((a:any, b:any) => b.score - a.score);
+//     //     // localDataTable[id] = {username: score};
+//     //     localDataTable.sort((a:any, b:any) => b.score - a.score);
 
-    //     if (localDataTable.length > 10) localDataTable.pop();
+//     //     if (localDataTable.length > 10) localDataTable.pop();
 
-    //     // localStorage.setItem("pokemon", JSON.stringify(localDataTable));
-    //     console.log("local overridden");
-    // } 
-    // else if (score !== 0 && cookies) {
-    //     localStorage.setItem("pokemon", JSON.stringify(
-    //         [{"username": username, "score": score}]
-    //     ));
-    // }
+//     //     // localStorage.setItem("pokemon", JSON.stringify(localDataTable));
+//     //     console.log("local overridden");
+//     // } 
+//     // else if (score !== 0 && cookies) {
+//     //     localStorage.setItem("pokemon", JSON.stringify(
+//     //         [{"username": username, "score": score}]
+//     //     ));
+//     // }
 
-    // const { data, error, isLoading } = useSWR('/api/user', fetcher)
+//     // const { data, error, isLoading } = useSWR('/api/user', fetcher)
 
-    // if (error) return <div>failed to load</div>
-    // if (isLoading) return <div>loading...</div>
-    // return <div>hello {data.name}!</div>
+//     // if (error) return <div>failed to load</div>
+//     // if (isLoading) return <div>loading...</div>
+//     // return <div>hello {data.name}!</div>
 
 
-    // localStorage.setItem("pokemon", JSON.stringify(
-    //     [
-    //         { username: "alex", score: 200 },
-    //         { username: "miss", score: 800 },
-    //         { username: "john", score: 500 },
-    //         { username: "alex", score: 200 },
-    //         { username: "miss", score: 800 },
-    //         { username: "john", score: 500 },
-    //         { username: "alex", score: 200 },
-    //         { username: "miss", score: 800 },
-    //         { username: "alex", score: 200 },
-    //         { username: "miss", score: 800 },
-    //     ]
-    // ));
+//     // localStorage.setItem("pokemon", JSON.stringify(
+//     //     [
+//     //         { username: "alex", score: 200 },
+//     //         { username: "miss", score: 800 },
+//     //         { username: "john", score: 500 },
+//     //         { username: "alex", score: 200 },
+//     //         { username: "miss", score: 800 },
+//     //         { username: "john", score: 500 },
+//     //         { username: "alex", score: 200 },
+//     //         { username: "miss", score: 800 },
+//     //         { username: "alex", score: 200 },
+//     //         { username: "miss", score: 800 },
+//     //     ]
+//     // ));
     
     
-    // [
-        // { username: "alex", score: 200 },
-        // { username: "miss", score: 800 },
-        // { username: "john", score: 500 },
-        // { username: "alex", score: 200 },
-        // { username: "miss", score: 800 },
-        // { username: "john", score: 500 },
-        // { username: "alex", score: 200 },
-        // { username: "miss", score: 800 },
-        // { username: "alex", score: 200 },
-        // { username: "miss", score: 800 },
-    // ].sort((a, b) => b.score - a.score);
-    //TODO get only first 10
+//     // [
+//         // { username: "alex", score: 200 },
+//         // { username: "miss", score: 800 },
+//         // { username: "john", score: 500 },
+//         // { username: "alex", score: 200 },
+//         // { username: "miss", score: 800 },
+//         // { username: "john", score: 500 },
+//         // { username: "alex", score: 200 },
+//         // { username: "miss", score: 800 },
+//         // { username: "alex", score: 200 },
+//         // { username: "miss", score: 800 },
+//     // ].sort((a, b) => b.score - a.score);
+//     //TODO get only first 10
 
-    {/* <button onClick={() => localStorage.setItem("pokemon", JSON.stringify(localDataTable))}>
+//     {/* <button onClick={() => localStorage.setItem("pokemon", JSON.stringify(localDataTable))}>
 
-    </button> */}
+//     </button> */}
 
-    return (
-        <React.Fragment>
-            {true && localDataTable.map((value: any, id: any, array: any) => (
-                value ?
-                    <div className="userScoresTable" key={id} >
-                        <div className="scoreTableOne">{id + 1}</div>
-                        <div className="scoreTableTwo">{value.username}</div>
-                        <div className="scoreTableThree">{value.score}</div>
-                    </div>
-                : <div></div>
-            ))}
-        </React.Fragment>
-    );
-}
+//     return (
+//         <React.Fragment>
+//             {true && localDataTable.map((value: any, id: any, array: any) => (
+//                 value ?
+//                     <div className="userScoresTable" key={id} >
+//                         <div className="scoreTableOne">{id + 1}</div>
+//                         <div className="scoreTableTwo">{value.username}</div>
+//                         <div className="scoreTableThree">{value.score}</div>
+//                     </div>
+//                 : <div></div>
+//             ))}
+//         </React.Fragment>
+//     );
+// }
 
 export function updateCookies(username: string, score: number) {
 
