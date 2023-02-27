@@ -220,7 +220,7 @@ function GameLogic(props: any) {
         username: username as string,
         level: level as number,
         levelBreak: 200,
-        score: 40,
+        score: 0,
         pos: { x: 4, y: -6, sy: 19 },
         matrix: createPiece(""),
         followingMatrixes: [...Array(4)].map(

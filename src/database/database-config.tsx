@@ -136,12 +136,9 @@ export function updateCookies(username: string, score: number) {
         localDataTable[id] = {"username": username, "score": score};
         localDataTable.sort((a:any, b:any) => b.score - a.score);
 
-        console.log(localDataTable.length);
-
         if (localDataTable.length > 10) localDataTable.pop();
 
         localStorage.setItem("localScore", JSON.stringify(localDataTable));
-        console.log("local overridden");
     } 
     else if (!localDataTable && score !== 0) {
         localStorage.setItem("localScore", JSON.stringify(
