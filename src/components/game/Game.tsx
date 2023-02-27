@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { LocalDatabase, updateCookies } from "../../database/database-config";
+// import { LocalDatabase, updateCookies } from "../../database/database-config";
 
 import GameLogic from "./GameLogic";
 import MultiplayerGame from "./MultiplayerGame";
