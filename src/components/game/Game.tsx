@@ -190,9 +190,7 @@ function Game() {
 function GameOverMenu(props: any) {
     const { username, score, setGameOver, setStartGame, setCookies } = props;
 
-    useEffect(() => {
-        updateCookies(username, score);
-    }, [])
+    updateCookies(username, score);
 
     return (
         <div className="gameOverMenu">
