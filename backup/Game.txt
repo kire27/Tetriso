@@ -1,0 +1,99 @@
+import React, { useState } from "react";
+import SpGame from "./GameLogic";
+import { LocalDatabase } from "../../database/database-config";
+import { Link } from "react-router-dom";
+
+function Singleplayer() {
+    const [gameOver, setGameOver] = useState(false);
+    const [startGame, setStartGame] = useState(false);
+    const [username, setUsername] = useState("");
+    const [level, setLevel] = useState(1);
+
+    return (
+        <div className="gameContent">
+            <div id="gC" className="gameMenu">
+                {startGame ? (
+                    <div>
+                        {gameOver ? (
+                            <GameOverMenu 
+                                setGameOver={setGameOver} 
+                                setStartGame={setStartGame} />
+                        ) : (
+                            <SpGame
+                                level={level}
+                                username={username}
+                                setGameOver={setGameOver}
+                            />
+                        )}
+                    </div>
+                ) : (
+                    <form>
+                        <input
+                            id="usernameInputS"
+                            className="menuUsername"
+                            maxLength={5}
+                            style={{
+                                color: /^[a-zA-z]{5}$/.test(username)
+                                    ? "black"
+                                    : "red",
+                            }}
+                            onChange={(e) =>
+                                setUsername(e.target.value.toUpperCase())
+                            }
+                            type="text"
+                            placeholder="your username"
+                        />
+
+                        <button
+                            id="levelBtn"
+                            className="menuLevel"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                if (level === 20) setLevel(1);
+                                else setLevel(level === 1 ? level + 1 : level + 2);
+                            }}
+                        >
+                            {"LEVEL: " + level}
+                        </button>
+
+                        <button
+                            id="startGameBtnS"
+                            className="menuStartGame"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                if (/^[a-zA-z]{5}$/.test(username)) {
+                                    setStartGame(true);
+                                    setGameOver(false);
+                                } else
+                                    alert(
+                                        "Username has to contain only letters and be 5 characters long!"
+                                    );
+                            }}
+                        >
+                            START GAME
+                        </button>
+
+                        <LocalDatabase />
+                    </form>
+                )}
+            </div>
+        </div>
+
+    );
+}
+
+function GameOverMenu(props: any) {
+    const { setGameOver, setStartGame } = props;
+
+    return (
+        <div className="gameOverMenu">
+            <div className="gameOverHeaders">
+                <h1>Game Over</h1>
+                <h2 onClick={() => setGameOver(false)}>Restart</h2>
+                <h2 onClick={() => setStartGame(false)}> Menu </h2>
+            </div>
+        </div>
+    );
+}
+
+export default Singleplayer;

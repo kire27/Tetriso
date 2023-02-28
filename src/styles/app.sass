@@ -1,0 +1,175 @@
+@import "./index.sass"
+@import "./glitch.sass"
+
+.container 
+    display: flex
+    flex-direction: column
+    justify-content: center
+    width: 100%
+    height: 100%
+    padding: 0
+    margin: 0
+    .title
+        height: 50vw
+        background-image: url("../assets/wallpapers/bg-peaks1.svg")
+        background-color: $c-dark
+        background-repeat: no-repeat
+        background-size: contain
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        overflow: hidden
+    
+        .underTitle
+            display: flex
+            align-items: center
+            justify-content: center
+            margin: 1vh
+            a
+                margin: 3vw
+                padding: 0.3rem $s-undertitlePadding
+                text-decoration: none
+                background-color: $c-secondary2
+                font-size: $s-undertitle
+                font-family: Righteous
+                color: black
+                cursor: pointer
+                text-align: center
+                clip-path: polygon(0 0, 80% 0, 100% 40%, 100% 100%, 15% 100%, 0 70%)
+            a:hover 
+                background-color: $c-secondary1
+                animation: glitch 6s 0.1s forwards, noise-1 0.3s 0.2s backwards
+
+
+    .contentParagraphs
+        display: grid
+        flex-direction: column
+        flex-wrap: wrap
+        background-image: url("../assets/wallpapers/bg-peaks2.svg")
+        background-color: $c-dark
+        background-repeat: no-repeat
+        background-size: contain
+        background-position: bottom
+        align-items: center
+        justify-content: center
+        justify-items: center
+        margin-top: 1rem
+        padding: 6vw 0
+        .firstParagraph
+            display: flex
+            flex-wrap: wrap
+            justify-content: center
+            gap: 2rem
+            .userAvatar
+                width: 5rem
+            .contentParagraph
+                width: clamp(5rem, 60vw, 30rem)
+        .contentParagraph 
+            height: auto
+            width: 60vw
+            padding: 10px
+            & h1 
+                padding: 10px 0
+                margin: 0
+                font-size: 28px
+                color: $c5
+                text-align: center
+            & p 
+                font-size: 15px
+                color: $c5
+                margin: 0
+
+    .scores
+        display: grid // TODO setup grid for table grid direction
+        grid-template-rows: repeat(auto-fill, 30px)
+        width: 20rem
+        height: 20.6rem 
+        max-width: 20rem
+        overflow-x: hidden
+        border-radius: 5px
+        padding: 0.5rem
+        color: white
+    
+    .highScoresTitle 
+        text-align: center
+        margin: 0
+        font-size: 18px
+        font-weight: 700
+        font-family: Righteous
+        border-bottom: 2px solid $c5
+
+    .userScoresTable 
+        display: flex
+        justify-content: space-evenly
+        align-items: center
+        padding: 4px 0
+        div
+            width: 4rem
+            text-align: center
+
+
+article
+    flex: 1
+
+footer
+    display: flex
+    background-color: $c-secondary2
+    width: 100%
+    align-items: center
+    justify-content: center
+    padding: 1rem 0
+    gap: 0.6rem
+    .footerLink
+        text-decoration: none
+        color: $c-dark
+    #footerTetriso
+        font-family: $f-cyberway
+        color: $c-dark
+        font-size: 1.5rem
+
+
+.wrongPage 
+    display: flex
+    font-size: 5vw
+    color: $c-secondary1
+    height: 85vh
+    text-align: center
+    align-items: center
+
+
+::-webkit-scrollbar 
+    width: 4px
+::-webkit-scrollbar-track 
+    background: #004054
+::-webkit-scrollbar-thumb 
+    background: #07AA82
+::-webkit-scrollbar-thumb:hover 
+    background: #7ADB60
+
+
+@media only screen and (min-width: 1165px) 
+    .gameLogo 
+        border-right: 2px solid white
+   
+
+@media only screen and (max-width: 980px) 
+    .contentContainer 
+        flex-direction: column
+        align-items: center
+    
+    .highScores 
+        min-width: 80vw
+    
+    .contentParagraphs 
+        min-width: 80vw
+    
+    .highScores 
+        height: 36vh
+    
+    .mainFooter 
+        flex-direction: column
+        align-items: center
+    
+    .footerButtons 
+        flex-direction: row
