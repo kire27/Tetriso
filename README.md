@@ -37,8 +37,6 @@ TODO
 
 # cosmetic
 
-change tetris block images
-
 in game add animation when block piece drops 
 
 <!-- make a smooth small pop up in game menu that the multiplayer id was copied -->
@@ -57,6 +55,8 @@ change player state to useState for rerendering
 
 improve scoring and leveling system
 
+bug in draw shadow the shadow can go under other pieces
+
 <!-- on multiplayer add options to create or join room
     - in the room you will paste an ID with which you can use to join another room
     - or you can get ID so others can join you -->
@@ -67,8 +67,6 @@ improve scoring and leveling system
 
 
 # database
-
-add cache for local score history (SWR)
 
 <!-- tetriso database:
     how to save user info system

@@ -3,8 +3,6 @@
 // https://medium.com/@pdx.lucasm/canvas-with-react-js-32e133c05258
 
 import React, { useRef, useEffect, useState } from "react";
-import { doc, setDoc, getDoc, Timestamp } from "firebase/firestore";
-import { firestore } from "../../database/firebase-config";
 
 import homeIcon from "../../assets/icons/home.svg";
 import pauseIcon from "../../assets/icons/pause.svg";
@@ -22,7 +20,7 @@ import img_i_aqua from "../../assets/game-textures/i-aqua.png";
 import img_j_green from "../../assets/game-textures/j-green.png";
 import img_l_blue from "../../assets/game-textures/l-blue.png";
 import img_o_purple from "../../assets/game-textures/o-purple.png";
-import img_s_orange from "../../assets/game-textures/s-orange.png";
+import img_s_gray from "../../assets/game-textures/s-gray.png";
 import img_t_red from "../../assets/game-textures/t-red.png";
 import img_z_yellow from "../../assets/game-textures/z-yellow.png";
 
@@ -71,7 +69,8 @@ function GameLogic(props: any) {
             if (!connected) return 
 
             // if (!pauseGame) 
-                frameCount++;       
+                frameCount++;  
+                 
 
             if (keyIsDown > 0) keyIsDown--; //TODO make better mechanics
 
@@ -117,7 +116,7 @@ function GameLogic(props: any) {
         bc2: img_j_green,
         bc3: img_l_blue,
         bc4: img_o_purple,
-        bc5: img_s_orange,
+        bc5: img_s_gray,
         bc6: img_t_red,
         bc7: img_z_yellow,
     };
@@ -147,7 +146,7 @@ function GameLogic(props: any) {
     blockImgs.bi6.src = blockColors.bc6;
     blockImgs.bi7.src = blockColors.bc7;
 
-    const colors: object = {
+    const colorImgs: object = {
         1: blockImgs.bi1,
         2: blockImgs.bi2,
         3: blockImgs.bi3,
@@ -156,6 +155,17 @@ function GameLogic(props: any) {
         6: blockImgs.bi6,
         7: blockImgs.bi7,
     };
+
+    const colors: object = {
+        1: "#00FFF8",
+        2: "#00FF00",
+        3: "#0000FF",
+        4: "#F800FF",
+        5: "#807f80",
+        6: "#FF0000",
+        7: "#FFF800",
+    };
+
 
     const dropIntervals = {
         1: 130,
@@ -223,7 +233,7 @@ function GameLogic(props: any) {
         username: username as string,
         level: level as number,
         levelBreak: 200,
-        score: 80,
+        score: 0,
         pos: { x: 4, y: -6, sy: 19 },
         matrix: createPiece(""),
         followingMatrixes: [...Array(4)].map(
@@ -407,16 +417,18 @@ function GameLogic(props: any) {
                 row.forEach((value, x) => {
                     if (value !== 0) {
                         context.globalAlpha = 1;
+                        context.shadowColor = Object(colors)[value];
+                        context.shadowBlur = 10;
                         context.drawImage(
-                            Object(colors)[value],
+                            Object(colorImgs)[value],
                             x + offset.x,
                             y + offset.y,
                             1,
                             1
                         );
-                        context.globalAlpha = 0.25;
+                        context.globalAlpha = 0.15;
                         context.drawImage(
-                            Object(colors)[value],
+                            Object(colorImgs)[value],
                             x + offset.x,
                             y + offset.sy,
                             1,
@@ -451,7 +463,41 @@ function GameLogic(props: any) {
     }
 
     function drawShadow() {
-        if (collide(arena, player, player.pos.sy)) player.pos.sy--;
+        // TODO bug, the shadow can go under other pieces
+        // const [m, px, py] = [player.matrix, player.pos.x, player.pos.sy];
+        // for (let y = 0; y < m.length; ++y) {
+        //     for (let x = 0; x < m[y].length; ++x) {
+        //         if (
+        //             m[y][x] !== 0 &&
+        //             (arena[y + py] && arena[y + py][x + px]) !== 0
+        //         ) {
+        //             return true;
+        //         }
+        //     }
+        // }
+        // console.log(
+        //     player.pos.x+2, 
+        //     arena
+        // );
+        // for (let i=0; i<arena.length; i++) {
+        //     if (
+        //         arena[i][player.pos.y] === 0 
+        //         &&
+        //         player.pos.sy <= 20
+        //         // ||
+        //         // !collide(arena, player, player.pos.sy+1)
+        //         )
+        //         {
+        //             player.pos.sy++
+        //     }    
+        // else if (collide(arena, player, player.pos.sy)) 
+        //         player.pos.sy--
+            
+        // }
+
+        if (collide(arena, player, player.pos.sy)) {
+            player.pos.sy--;
+        }
         else if (!collide(arena, player, player.pos.sy + 1)) player.pos.sy++;
     }
 
@@ -614,7 +660,7 @@ function GameLogic(props: any) {
                 .innerText = player.level.toString();
         }
     }
-console.log(player);
+
     return (
         <div className="game">
             <div className="inGameInfoSegment">
