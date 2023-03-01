@@ -79,7 +79,6 @@ function GameLogic(props: any) {
                 dropIntervals[player.level > 20 ? 20 : player.level]
             ) {
                 playerDown();
-                playerControls.hardDrop[1] = true;
                 frameCount = 0;
             }
 
@@ -228,7 +227,7 @@ function GameLogic(props: any) {
         username: username as string,
         level: level as number,
         levelBreak: 200,
-        score: 0,
+        score: 80,
         pos: { x: 4, y: -6, sy: 19 },
         matrix: createPiece(""),
         followingMatrixes: [...Array(4)].map(
@@ -492,6 +491,7 @@ function GameLogic(props: any) {
             arenaSweep();
         }
 
+        playerControls.hardDrop[1] = true;
         keyIsDown = keyIsDownDuration;
     }
 

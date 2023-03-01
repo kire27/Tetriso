@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useSWR from 'swr';
 
 // export function GlobalDatabase() {
@@ -41,108 +41,43 @@ import useSWR from 'swr';
 // }
 
 
-// export function LocalDatabase(props: any): JSX.Element {
-     
-//     // const { username, score } = props;
+export function LocalDatabase(props: any): JSX.Element {
+    const { cookies } = props;
 
+    return (
+        <React.Fragment>
+            {cookies && cookies.map((value: any, id: any, array: any) => (
+                value ?
+                    <div className="userScoresTable" key={id} >
+                        <div className="scoreTableOne">{id + 1}</div>
+                        <div className="scoreTableTwo">{value.username}</div>
+                        <div className="scoreTableThree">{value.score}</div>
+                    </div>
+                : <div></div>
+            ))}
+        </React.Fragment>
+    );
+}
 
-//     const localDataTable: object[] = 
-//         JSON.parse(localStorage.getItem("localScore")!) || ""
+export function updateCookies(username: string, score: number, 
+    cookies: any, setCookies: any) 
+    {
 
-//     // if (!localDataTable) return <div></div>
+    if (cookies && score !== 0) {
+        const cookie = [{"username": username, "score": score}, ...cookies]
+            .sort((a:any, b:any) => b.score - a.score);
 
-//     // console.log(localDataTable);  
+        if (cookie.length > 10) cookie.pop();
 
-//     // if (localDataTable && cookies) {
-//     //     const id = localDataTable.length;
+        setCookies(cookie)
         
-//     //     // localDataTable[id] = {username: score};
-//     //     localDataTable.sort((a:any, b:any) => b.score - a.score);
+        localStorage.setItem("localScore", JSON.stringify(cookie));        
+    } 
+    else if (!cookies && score !== 0) {
+        setCookies([{"username": username, "score": score}]);
 
-//     //     if (localDataTable.length > 10) localDataTable.pop();
-
-//     //     // localStorage.setItem("pokemon", JSON.stringify(localDataTable));
-//     //     console.log("local overridden");
-//     // } 
-//     // else if (score !== 0 && cookies) {
-//     //     localStorage.setItem("pokemon", JSON.stringify(
-//     //         [{"username": username, "score": score}]
-//     //     ));
-//     // }
-
-//     // const { data, error, isLoading } = useSWR('/api/user', fetcher)
-
-//     // if (error) return <div>failed to load</div>
-//     // if (isLoading) return <div>loading...</div>
-//     // return <div>hello {data.name}!</div>
-
-
-//     // localStorage.setItem("pokemon", JSON.stringify(
-//     //     [
-//     //         { username: "alex", score: 200 },
-//     //         { username: "miss", score: 800 },
-//     //         { username: "john", score: 500 },
-//     //         { username: "alex", score: 200 },
-//     //         { username: "miss", score: 800 },
-//     //         { username: "john", score: 500 },
-//     //         { username: "alex", score: 200 },
-//     //         { username: "miss", score: 800 },
-//     //         { username: "alex", score: 200 },
-//     //         { username: "miss", score: 800 },
-//     //     ]
-//     // ));
-    
-    
-//     // [
-//         // { username: "alex", score: 200 },
-//         // { username: "miss", score: 800 },
-//         // { username: "john", score: 500 },
-//         // { username: "alex", score: 200 },
-//         // { username: "miss", score: 800 },
-//         // { username: "john", score: 500 },
-//         // { username: "alex", score: 200 },
-//         // { username: "miss", score: 800 },
-//         // { username: "alex", score: 200 },
-//         // { username: "miss", score: 800 },
-//     // ].sort((a, b) => b.score - a.score);
-//     //TODO get only first 10
-
-//     {/* <button onClick={() => localStorage.setItem("pokemon", JSON.stringify(localDataTable))}>
-
-//     </button> */}
-
-//     return (
-//         <React.Fragment>
-//             {true && localDataTable.map((value: any, id: any, array: any) => (
-//                 value ?
-//                     <div className="userScoresTable" key={id} >
-//                         <div className="scoreTableOne">{id + 1}</div>
-//                         <div className="scoreTableTwo">{value.username}</div>
-//                         <div className="scoreTableThree">{value.score}</div>
-//                     </div>
-//                 : <div></div> //TODO in production built. Probably this div section just to return JSX.element creates the error -> restyle the divs
-//             ))}
-//         </React.Fragment>
-//     );
-// }
-
-// export function updateCookies(username: string, score: number) {
-
-//     const localDataTable: object[] = JSON.parse(localStorage.getItem("localScore")!)
-
-//     if (localDataTable && score !== 0) {
-//         const id = localDataTable.length;
-
-//         localDataTable[id] = {"username": username, "score": score};
-//         localDataTable.sort((a:any, b:any) => b.score - a.score);
-
-//         if (localDataTable.length > 10) localDataTable.pop();
-
-//         localStorage.setItem("localScore", JSON.stringify(localDataTable));
-//     } 
-//     else if (!localDataTable && score !== 0) {
-//         localStorage.setItem("localScore", JSON.stringify(
-//             [{"username": username, "score": score}]
-//         ));
-//     }
-// }
+        localStorage.setItem("localScore", JSON.stringify(
+            [{"username": username, "score": score}]
+        ));
+    }
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-// import { LocalDatabase, updateCookies } from "../../database/database-config";
+import { LocalDatabase, updateCookies } from "../../database/database-config";
 
 import GameLogic from "./GameLogic";
 import MultiplayerGame from "./MultiplayerGame";
@@ -9,6 +9,8 @@ import paste from "../../assets/icons/paste.svg";
 
 
 function Game() {
+    
+    const [cookies, setCookies] = useState([{}]);
     const [gameOver, setGameOver] = useState(false);
     const [startGame, setStartGame] = useState(false);
     const [username, setUsername] = useState("");
@@ -18,6 +20,15 @@ function Game() {
     const [multiplayerKey, setMultiplayerKey] = useState("");
     const [mpMode, setMpMode] = useState("");
 
+    // setCookies(() =>
+    //     JSON.parse(localStorage.getItem("localScore")!)
+    // )
+
+    useEffect(() => {
+        setCookies(
+            JSON.parse(localStorage.getItem("localScore")!)
+        )
+    }, [false])
 
     // function generateKey() {
     //     function dec2hex (dec:any) {
@@ -45,6 +56,8 @@ function Game() {
                         score={score}
                         setGameOver={setGameOver} 
                         setStartGame={setStartGame}
+                        cookies={cookies}
+                        setCookies={setCookies}
                     />
                 :
                     <React.Fragment>
@@ -176,10 +189,7 @@ function Game() {
                         <h2 className="highScoresTitle">
                             LOCAL HIGH SCORES
                         </h2>
-                        {/* <LocalDatabase  
-                            username={username}
-                            score={score}
-                        /> */}
+                        <LocalDatabase cookies={cookies}/>
                     </div>
                 </div>
                 }
@@ -188,9 +198,11 @@ function Game() {
 }
 
 function GameOverMenu(props: any) {
-    const { username, score, setGameOver, setStartGame, setCookies } = props;
+    const { username, score, setGameOver, setStartGame, cookies, setCookies } = props;
 
-    // updateCookies(username, score);
+    useEffect(() => {
+        updateCookies(username, score, cookies, setCookies);
+    }, [false])
 
     return (
         <div className="gameOverMenu">
