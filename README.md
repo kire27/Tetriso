@@ -39,62 +39,55 @@ TODO
 
 change tetris block images
 
-on main homepage make the text shorter and more visible with styling. 
-
-replace all icons with svg react icons
-
 in game add animation when block piece drops 
 
-make a smooth small pop up in game menu that the text was copied
+<!-- make a smooth small pop up in game menu that the multiplayer id was copied -->
 
 # interface 
 
-user will join the mode depending on id key he will have available next to game. 
+<!-- user will join the mode depending on id key he will have available next to game.  -->
 
-global score will show top 100
-
-(maybe) on mobile screen the whole page will rotate
-    https://w3c.github.io/screen-orientation/
+<!-- global score will show top 100 -->
 
 
 # gameplay
 
+change player state to useState for rerendering
+    create pause game fuction
+
 improve scoring and leveling system
 
-on multiplayer add options to create or join room
+<!-- on multiplayer add options to create or join room
     - in the room you will paste an ID with which you can use to join another room
-    - or you can get ID so others can join you
+    - or you can get ID so others can join you -->
 
-in multiplayer in match there will be two playground next to each other
+<!-- in multiplayer in match there will be two playground next to each other
     - on right the users playground 
-    - on left is a smaller playground mirroring opponents moves
+    - on left is a smaller playground mirroring opponents moves -->
 
-add a delay in which the next pieces will start to fall
-    the delay will get shorter as the level goes up
-
-be able to pause game
 
 # database
 
 add cache for local score history (SWR)
 
-tetriso database:
+<!-- tetriso database:
     how to save user info system
     how to save relay of rooms for people to connect (the relays must be created or deleted, before or after the match) 
-        in multiplayer how to save each player moves so they can be mirrored from opponent to opponent  
+        in multiplayer how to save each player moves so they can be mirrored from opponent to opponent   -->
 
-in database save random pixel images as user profile pictures
-
+<!-- in database save random pixel images as user profile pictures -->
 
 # others
-
-find used material and tetris tutorial, add them into github readme resources for this project 
 
 
 
 
 
 RESOURCES
+
+tetris logic
+meth meth method
+https://www.youtube.com/watch?v=H2aW5V46khA
 
 text glitch effect
 Tee Diang
@@ -122,9 +115,8 @@ https://stackoverflow.com/a/27747377/15749280
         <img src="src/assets/logo/dalf-01.svg" alt="Logo" width="500" height="auto" style="margin:20px"/>
     </a>
     <p align="center">
-        A Daily lifestyle app to track your habits and time activity.
+        Fun and addicting web game.
         <br />
-        <h3>Currently in development.</h3>
         <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
         ·
         <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>

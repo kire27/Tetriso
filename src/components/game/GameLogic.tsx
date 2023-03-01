@@ -84,10 +84,6 @@ function GameLogic(props: any) {
             }
 
             if (frameCount % 9 === 0) playerKeyMove();
-            // if (frameCount % 40 === 0) {
-            //     playerControls.rotateLeft[1] = true;
-            //     playerControls.rotateRight[1] = true;
-            // }
 
             draw(context, canvas);
             drawShadow();
@@ -224,7 +220,7 @@ function GameLogic(props: any) {
         useHolder: boolean,
     }
 
-    const player = {
+    const [player, setPlayer] = useState({
         username: username as string,
         level: level as number,
         levelBreak: 200,
@@ -238,7 +234,7 @@ function GameLogic(props: any) {
         holdBlockType: "",
         holdBlock: [] as number[][],
         holdBlockImg: blockPieces.bp0,
-    };
+    });
 
     const { arena } = player;
 
@@ -618,7 +614,7 @@ function GameLogic(props: any) {
                 .innerText = player.level.toString();
         }
     }
-
+console.log(player);
     return (
         <div className="game">
             <div className="inGameInfoSegment">
@@ -633,12 +629,12 @@ function GameLogic(props: any) {
                 <div>
                     <h4 id="gameLevelText" className="gameInfo">
                         LEVEL: {" "}
-                        {/* {player.level} */}
+                        {player.level}
                         <span id="gameLevel"></span>
                     </h4>
                     <h4 id="gameScoreText" className="gameInfo">
                         SCORE: {" "}
-                        {/* {player.score} */}
+                        {player.score}
                         <span id="gameScore"></span>
                     </h4>
                 </div>
