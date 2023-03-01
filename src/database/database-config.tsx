@@ -1,44 +1,44 @@
 import React from "react";
 import useSWR from 'swr';
 
-export function GlobalDatabase() {
-    const globalDataTable = [
-        { username: "alex", score: 200 },
-        { username: "miss", score: 800 },
-        { username: "john", score: 500 },
-        { username: "alex", score: 200 },
-        { username: "miss", score: 800 },
-        { username: "john", score: 500 },
-        { username: "alex", score: 200 },
-        { username: "miss", score: 800 },
-        { username: "john", score: 500 },
-        { username: "alex", score: 200 },
-        { username: "miss", score: 800 },
-        { username: "john", score: 500 },
-        { username: "alex", score: 200 },
-        { username: "miss", score: 800 },
-        { username: "john", score: 500 },
-        { username: "alex", score: 200 },
-        { username: "miss", score: 800 },
-        { username: "john", score: 500 },
-    ].sort((a, b) => b.score - a.score);
+// export function GlobalDatabase() {
+//     const globalDataTable = [
+//         { username: "alex", score: 200 },
+//         { username: "miss", score: 800 },
+//         { username: "john", score: 500 },
+//         { username: "alex", score: 200 },
+//         { username: "miss", score: 800 },
+//         { username: "john", score: 500 },
+//         { username: "alex", score: 200 },
+//         { username: "miss", score: 800 },
+//         { username: "john", score: 500 },
+//         { username: "alex", score: 200 },
+//         { username: "miss", score: 800 },
+//         { username: "john", score: 500 },
+//         { username: "alex", score: 200 },
+//         { username: "miss", score: 800 },
+//         { username: "john", score: 500 },
+//         { username: "alex", score: 200 },
+//         { username: "miss", score: 800 },
+//         { username: "john", score: 500 },
+//     ].sort((a, b) => b.score - a.score);
 
-    return (
-        <div id="highScores" className="scores">
-            <h2 className="highScoresTitle">
-                GLOBAL HIGH SCORES: TOP 100
-            </h2>
+//     return (
+//         <div id="highScores" className="scores">
+//             <h2 className="highScoresTitle">
+//                 GLOBAL HIGH SCORES: TOP 100
+//             </h2>
 
-            {globalDataTable.map((value: any, id: any, array: any) => (
-                <div className={"userScoresTable"} key={id} >
-                    <div className="scoreTableOne">{id + 1}</div>
-                    <div className="scoreTableTwo">{value.username}</div>
-                    <div className="scoreTableThree">{value.score}</div>
-                </div>
-            ))}
-        </div>
-    );
-}
+//             {globalDataTable.map((value: any, id: any, array: any) => (
+//                 <div className={"userScoresTable"} key={id} >
+//                     <div className="scoreTableOne">{id + 1}</div>
+//                     <div className="scoreTableTwo">{value.username}</div>
+//                     <div className="scoreTableThree">{value.score}</div>
+//                 </div>
+//             ))}
+//         </div>
+//     );
+// }
 
 
 // export function LocalDatabase(props: any): JSX.Element {
@@ -126,23 +126,23 @@ export function GlobalDatabase() {
 //     );
 // }
 
-export function updateCookies(username: string, score: number) {
+// export function updateCookies(username: string, score: number) {
 
-    const localDataTable: object[] = JSON.parse(localStorage.getItem("localScore")!)
+//     const localDataTable: object[] = JSON.parse(localStorage.getItem("localScore")!)
 
-    if (localDataTable && score !== 0) {
-        const id = localDataTable.length;
+//     if (localDataTable && score !== 0) {
+//         const id = localDataTable.length;
 
-        localDataTable[id] = {"username": username, "score": score};
-        localDataTable.sort((a:any, b:any) => b.score - a.score);
+//         localDataTable[id] = {"username": username, "score": score};
+//         localDataTable.sort((a:any, b:any) => b.score - a.score);
 
-        if (localDataTable.length > 10) localDataTable.pop();
+//         if (localDataTable.length > 10) localDataTable.pop();
 
-        localStorage.setItem("localScore", JSON.stringify(localDataTable));
-    } 
-    else if (!localDataTable && score !== 0) {
-        localStorage.setItem("localScore", JSON.stringify(
-            [{"username": username, "score": score}]
-        ));
-    }
-}
+//         localStorage.setItem("localScore", JSON.stringify(localDataTable));
+//     } 
+//     else if (!localDataTable && score !== 0) {
+//         localStorage.setItem("localScore", JSON.stringify(
+//             [{"username": username, "score": score}]
+//         ));
+//     }
+// }

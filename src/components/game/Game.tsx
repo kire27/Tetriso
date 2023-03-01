@@ -75,7 +75,7 @@ function Game() {
                         setStartGame={setStartGame}
                         connected={connected}
                         multiplayerKey={multiplayerKey}
-                        mpMode={mpMode} 
+                        mpMode={mpMode}
                     />
 
                     </React.Fragment>

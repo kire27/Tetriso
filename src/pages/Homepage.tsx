@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as style from '@dicebear/bottts-neutral';
 
-import { GlobalDatabase } from "../database/database-config";
+// import { GlobalDatabase } from "../database/database-config";
 import Game from "../components/game/Game";
 
 // import { createAvatar } from '@dicebear/core';
