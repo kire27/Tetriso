@@ -70,17 +70,24 @@ function GameLogic(props: any) {
         const render = () => {
             if (!connected) return 
 
-            frameCount++;
+            // if (!pauseGame) 
+                frameCount++;       
 
             if (keyIsDown > 0) keyIsDown--; //TODO make better mechanics
 
-            if (
-                frameCount >
+            if (frameCount >
                 dropIntervals[player.level > 20 ? 20 : player.level]
             ) {
                 playerDown();
+                playerControls.hardDrop[1] = true;
                 frameCount = 0;
             }
+
+            if (frameCount % 9 === 0) playerKeyMove();
+            // if (frameCount % 40 === 0) {
+            //     playerControls.rotateLeft[1] = true;
+            //     playerControls.rotateRight[1] = true;
+            // }
 
             draw(context, canvas);
             drawShadow();
@@ -179,23 +186,24 @@ function GameLogic(props: any) {
     } as any;
 
     const playerControls = {
-        pause: "Escape",
-        rotateLeft: "KeyZ",
-        hold: "KeyC",
-        hardDrop: "Space",
-        moveLeft: "ArrowLeft",
+        moveLeft: "ArrowLeft", 
         moveRight: "ArrowRight",
         softDrop: "ArrowDown",
-        rotateRight: "ArrowUp",
+        hold: ["KeyC", true],
+        hardDrop: ["Space", true],
+        rotateLeft: ["KeyZ", true],
+        rotateRight: ["ArrowUp", true],
     };
 
     const { mpMode, connected, multiplayerKey, setGameOver, 
-        setStartGame, username, level, setScore, ...rest } = props;
+        setStartGame, username, level, setScore, 
+        ...rest } = props;
     
     const canvasRef = useRef();
     const canvasBlockHolderRef = useRef();
     const canvasBlockNextRef = useRef();
 
+    // let pauseGame = false;
     let keyIsDown = 0;
     let keyIsDownDuration = 70;
 
@@ -230,7 +238,6 @@ function GameLogic(props: any) {
         holdBlockType: "",
         holdBlock: [] as number[][],
         holdBlockImg: blockPieces.bp0,
-        useHolder: true,
     };
 
     const { arena } = player;
@@ -246,30 +253,16 @@ function GameLogic(props: any) {
         matrix: number[][];
     };
 
-    document.onkeydown = (e) => {
-        if (e.code === playerControls.moveLeft) {
-            playerMove(-1);
-            keyIsDown = keyIsDownDuration;
-        }
-        if (e.code === playerControls.moveRight) {
-            playerMove(1);
-            keyIsDown = keyIsDownDuration;
-        }
-        if (e.code === playerControls.softDrop) {
-            playerDown();
-            keyIsDown = keyIsDownDuration;
-        }
-        if (e.code === playerControls.hardDrop) playerDrop();
-        if (e.code === playerControls.rotateLeft) {
-            playerRotate(-1);
-            keyIsDown = keyIsDownDuration;
-        }
-        if (e.code === playerControls.rotateRight) {
-            playerRotate(1);
-            keyIsDown = keyIsDownDuration;
-        }
-        if (e.code === playerControls.hold && player.useHolder) PlayerHold();
-    };
+    const keysPressed = new Set();
+
+    document.addEventListener("keydown", e => {
+        keysPressed.add(e.code);
+    });
+    document.addEventListener("keyup", e => {
+        keysPressed.delete(e.code);
+        playerControls.rotateLeft[1] = true;
+        playerControls.rotateRight[1] = true;
+    });
 
     function arenaSweep() {
         let rowCount = 1;
@@ -323,6 +316,7 @@ function GameLogic(props: any) {
                 }
             }
         }
+
         return false;
     }
 
@@ -380,34 +374,35 @@ function GameLogic(props: any) {
         else return createMatrix(3, 3);
     }
 
-    async function createRelay(player: playerTypes, connected: boolean,
-        multiplayerKey: string, mpMode: string) {
+    // async function createRelay(player: playerTypes, connected: boolean,
+    //     multiplayerKey: string, mpMode: string) {
 
-        const { username, level, score, pos, arena, ...rest } = player!;
+    //     const { username, level, score, pos, arena, ...rest } = player!;
 
-        try {
-            await setDoc(doc(firestore, "connections", multiplayerKey), {
-                [mpMode]: {
-                    username: username,
-                    level: level,
-                    score: score,
-                    pos: pos,
-                    arena: arena.flat(1),
-                    connected: connected,
-                    multiplayerKey: multiplayerKey,
-                    createdAt: Timestamp.fromDate(new Date()),
-                },
-            }, {
-                merge: true
-            })
-        } catch (error) {
-            console.log(error);
-        }
+    //     try {
+    //         await setDoc(doc(firestore, "connections", multiplayerKey), {
+    //             [mpMode]: {
+    //                 username: username,
+    //                 level: level,
+    //                 score: score,
+    //                 pos: pos,
+    //                 arena: arena.flat(1),
+    //                 connected: connected,
+    //                 multiplayerKey: multiplayerKey,
+    //                 createdAt: Timestamp.fromDate(new Date()),
+    //             },
+    //         }, {
+    //             merge: true
+    //         })
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
 
-        console.log("data written");
-    }
+    //     console.log("data written");
+    // }
 
     function draw(context: any, canvas: any) {
+
         function drawMatrix(
             matrix: number[][],
             context: any,
@@ -476,9 +471,19 @@ function GameLogic(props: any) {
         });
     }
 
+    // function PauseGame(props: any) {
+    //     const { pauseGame } = props;
+
+    //     return (
+    //         <div className="pauseGame" style={{ display: pauseGame ? "flex" : "none" }}>
+    //             <h1>GAME PAUSED</h1>
+    //         </div>
+    //     );
+    // }
+
     function playerDown() {
         player.pos.y++;
-        
+
         if (collide(arena, player, player.pos.y)) {
             player.pos.y--;
             if (keyIsDown) return; // if key is down, merge won't happen
@@ -486,7 +491,8 @@ function GameLogic(props: any) {
             playerReset();
             arenaSweep();
         }
-        // dropCounter = 0;
+
+        keyIsDown = keyIsDownDuration;
     }
 
     function playerDrop() {
@@ -497,7 +503,8 @@ function GameLogic(props: any) {
         merge(arena, player);
         playerReset();
         arenaSweep();
-        // dropCounter = 0;
+
+        playerControls.hardDrop[1] = false;
     }
 
     function PlayerHold() {
@@ -514,16 +521,30 @@ function GameLogic(props: any) {
 
         [player.pos.x, player.pos.y] = [4, 0];
 
-        console.log(player.pos.x, player.pos.y);
-
-        player.useHolder = false;
+        playerControls.hold[1] = false;
     }
+
+    function playerKeyMove() {
+        if (keysPressed.has(playerControls.moveLeft)) playerMove(-1);
+        if (keysPressed.has(playerControls.moveRight)) playerMove(1);
+        if (keysPressed.has(playerControls.softDrop)) playerDown();
+        if (keysPressed.has(playerControls.hardDrop[0]) && 
+            playerControls.hardDrop[1]) playerDrop(); 
+        if (keysPressed.has(playerControls.rotateLeft[0]) && 
+            playerControls.rotateLeft[1]) playerRotate(-1);
+        if (keysPressed.has(playerControls.rotateRight[0]) && 
+            playerControls.rotateRight[1]) playerRotate(1);
+        if (keysPressed.has(playerControls.hold[0]) && 
+            playerControls.hold[1]) PlayerHold();
+    };
 
     function playerMove(dir: number) {
         player.pos.x += dir;
         if (collide(arena, player, player.pos.y)) {
             player.pos.x -= dir;
         }
+
+        keyIsDown = keyIsDownDuration;
     }
 
     function playerReset() {
@@ -535,7 +556,7 @@ function GameLogic(props: any) {
         player.pos.y = 0;
         player.pos.x =
             ((arena[0].length / 2) | 0) - ((player.matrix[0].length / 2) | 0);
-        player.useHolder = true;
+        playerControls.hold[1] = true;
 
         // if (multiplayerKey) 
         //         createRelay(player, connected, multiplayerKey, mpMode);
@@ -565,6 +586,10 @@ function GameLogic(props: any) {
                 return;
             }
         }
+
+        playerControls.rotateRight[1] = false;
+        playerControls.rotateLeft[1] = false;
+        keyIsDown = keyIsDownDuration;
     }
 
     function rotate(matrix: number[][], dir: number) {
@@ -620,14 +645,16 @@ function GameLogic(props: any) {
 
                 <h2 className="gameInfo">{player.username}</h2>
 
-                <img src={pauseIcon} className="gameIcon" alt="pause" />
+                {/* <img src={pauseIcon} className="gameIcon" alt="pause"
+                    onClick={() => pauseGame ? pauseGame = false : pauseGame = true} /> */}
                 
                 <img src={homeIcon} className="gameIcon"  
                     alt="home" 
                     onClick={()=> setStartGame(false)}/>
             </div>
 
-            {/* <SpGame setGameOver={setGameOver} /> */}
+            {/* <PauseGame /> */}
+
             <canvas id="canvasPlay" ref={canvasRef} {...rest}>
                 Your browser does not support the HTML canvas tag.
             </canvas>
