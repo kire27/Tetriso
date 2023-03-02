@@ -65,12 +65,13 @@ function GameLogic(props: any) {
         let frameCount = 0;
         let animationFrameId: any;
 
+        if (pauseGame) return;
+        console.log(pauseGame)
+
         const render = () => {
             if (!connected) return 
 
-            // if (!pauseGame) 
-                frameCount++;  
-                 
+            frameCount++;                   
 
             if (keyIsDown > 0) keyIsDown--; //TODO make better mechanics
 
@@ -191,6 +192,7 @@ function GameLogic(props: any) {
     } as any;
 
     const playerControls = {
+        pause: "Escape",
         moveLeft: "ArrowLeft", 
         moveRight: "ArrowRight",
         softDrop: "ArrowDown",
@@ -201,14 +203,13 @@ function GameLogic(props: any) {
     };
 
     const { mpMode, connected, multiplayerKey, setGameOver, 
-        setStartGame, username, level, setScore, 
+        setStartGame, username, level, setScore, pauseGame, setPauseGame,
         ...rest } = props;
     
     const canvasRef = useRef();
     const canvasBlockHolderRef = useRef();
     const canvasBlockNextRef = useRef();
 
-    // let pauseGame = false;
     let keyIsDown = 0;
     let keyIsDownDuration = 70;
 
@@ -261,6 +262,7 @@ function GameLogic(props: any) {
     const keysPressed = new Set();
 
     document.addEventListener("keydown", e => {
+        // console.log(e)
         keysPressed.add(e.code);
     });
     document.addEventListener("keyup", e => {
@@ -493,12 +495,14 @@ function GameLogic(props: any) {
         // else if (collide(arena, player, player.pos.sy)) 
         //         player.pos.sy--
             
-        // }
+        // }<
+        // console.log(
+        //     arena,
+        //     arena[player.pos.sy][player.pos.sy<18?player.pos.sy:17],
+        // )
 
-        if (collide(arena, player, player.pos.sy)) {
-            player.pos.sy--;
-        }
-        else if (!collide(arena, player, player.pos.sy + 1)) player.pos.sy++;
+        if (collide(arena, player, player.pos.sy)) player.pos.sy--;
+        else if (!collide(arena, player, player.pos.sy + 1)) player.pos.sy++; 
     }
 
     function merge(arena: number[][], player: playerInterface) {
@@ -511,16 +515,6 @@ function GameLogic(props: any) {
             });
         });
     }
-
-    // function PauseGame(props: any) {
-    //     const { pauseGame } = props;
-
-    //     return (
-    //         <div className="pauseGame" style={{ display: pauseGame ? "flex" : "none" }}>
-    //             <h1>GAME PAUSED</h1>
-    //         </div>
-    //     );
-    // }
 
     function playerDown() {
         player.pos.y++;
@@ -567,6 +561,7 @@ function GameLogic(props: any) {
     }
 
     function playerKeyMove() {
+        if (keysPressed.has(playerControls.pause)) pauseGame ? setPauseGame(false) : setPauseGame(true);
         if (keysPressed.has(playerControls.moveLeft)) playerMove(-1);
         if (keysPressed.has(playerControls.moveRight)) playerMove(1);
         if (keysPressed.has(playerControls.softDrop)) playerDown();
@@ -675,20 +670,18 @@ function GameLogic(props: any) {
                 <div>
                     <h4 id="gameLevelText" className="gameInfo">
                         LEVEL: {" "}
-                        {player.level}
                         <span id="gameLevel"></span>
                     </h4>
                     <h4 id="gameScoreText" className="gameInfo">
                         SCORE: {" "}
-                        {player.score}
                         <span id="gameScore"></span>
                     </h4>
                 </div>
 
                 <h2 className="gameInfo">{player.username}</h2>
 
-                {/* <img src={pauseIcon} className="gameIcon" alt="pause"
-                    onClick={() => pauseGame ? pauseGame = false : pauseGame = true} /> */}
+                <img src={pauseIcon} className="gameIcon" alt="pause"
+                    onClick={() => pauseGame ? setPauseGame(false) : setPauseGame(true)} />
                 
                 <img src={homeIcon} className="gameIcon"  
                     alt="home" 

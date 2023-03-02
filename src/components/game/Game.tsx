@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, Fragment } from "react";
 import { LocalDatabase, updateCookies } from "../../database/database-config";
 
 import GameLogic from "./GameLogic";
@@ -19,16 +19,23 @@ function Game() {
     const [connected, setConnected] = useState(true);
     const [multiplayerKey, setMultiplayerKey] = useState("");
     const [mpMode, setMpMode] = useState("");
-
-    // setCookies(() =>
-    //     JSON.parse(localStorage.getItem("localScore")!)
-    // )
+    const [pauseGame, setPauseGame] = useState(false);
 
     useEffect(() => {
         setCookies(
             JSON.parse(localStorage.getItem("localScore")!)
         )
-    }, [false])
+    }, [false]);
+
+    function toStartGame() {
+        if (/^[a-zA-z]{5}$/.test(username)) {
+            setStartGame(true);
+            setGameOver(false);
+        } else
+            alert(
+                "Username has to contain only letters and be 5 characters long!"
+            );
+    }
 
     // function generateKey() {
     //     function dec2hex (dec:any) {
@@ -48,7 +55,7 @@ function Game() {
         <div className="gameContent">
 
             {startGame ?
-                <React.Fragment>
+                <Fragment>
 
                 {gameOver ?
                     <GameOverMenu 
@@ -60,7 +67,7 @@ function Game() {
                         setCookies={setCookies}
                     />
                 :
-                    <React.Fragment>
+                    <Fragment>
 
                     {/* {connected ?
                     "": 
@@ -80,6 +87,11 @@ function Game() {
                     : ""
                     } */}
 
+                    {pauseGame ?
+                        <PauseGame />
+                    : <Fragment />
+                    }
+
                     <GameLogic
                         level={level}
                         setScore={setScore}
@@ -89,12 +101,14 @@ function Game() {
                         connected={connected}
                         multiplayerKey={multiplayerKey}
                         mpMode={mpMode}
+                        pauseGame={pauseGame}
+                        setPauseGame={setPauseGame}
                     />
 
-                    </React.Fragment>
+                    </Fragment>
                 }
 
-                </React.Fragment>
+                </Fragment>
             :
                 <div id="gameMenu" className="gameMenu">
                     <input
@@ -109,6 +123,9 @@ function Game() {
                         onChange={(e) =>
                             setUsername(e.target.value.toUpperCase())
                         }
+                        onKeyDown={(e) => {
+                            if (e.code === "Enter") toStartGame();
+                        }}
                         type="text"
                         placeholder="your username"
                     />
@@ -171,16 +188,7 @@ function Game() {
                     <button
                         id="startGameBtnS"
                         className="menuStartGame"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            if (/^[a-zA-z]{5}$/.test(username)) {
-                                setStartGame(true);
-                                setGameOver(false);
-                            } else
-                                alert(
-                                    "Username has to contain only letters and be 5 characters long!"
-                                );
-                        }}
+                        onClick={(e) => toStartGame()}
                     >
                         START GAME
                     </button>
@@ -215,6 +223,14 @@ function GameOverMenu(props: any) {
                 setStartGame(false); 
                 setGameOver(false);
             }} >Menu</h2>
+        </div>
+    ); 
+}
+
+function PauseGame() {
+    return (
+        <div className="pauseGame">
+            <h1>GAME PAUSED</h1>
         </div>
     );
 }
