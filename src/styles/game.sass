@@ -102,23 +102,37 @@
         background-color: $c-red
 
 
-.awaitingPlayer 
-    position: absolute
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: center
-    background-color: rgba($c-dark, 0.9)
-    z-index: 1
-    width: 850px
-    height: 800px
-    box-shadow: 0 0 2px 2px rgba($c-main, 0.8)
-    h1
-        font-size: 5rem
-        color: $c-main
-    h3
-        color: $c-main
-        font-size: 2rem
+.pauseGame
+        position: absolute
+        margin-top: 85px
+        width: 400px
+        height: 600px
+        background-color: $c-dark
+        display: flex
+        h1
+            color: white
+            margin: auto auto
+            font-size: 4rem
+            text-align: center
+
+
+// .awaitingPlayer 
+//     position: absolute
+//     display: flex
+//     flex-direction: column
+//     align-items: center
+//     justify-content: center
+//     background-color: rgba($c-dark, 0.9)
+//     z-index: 1
+//     width: 850px
+//     height: 800px
+//     box-shadow: 0 0 2px 2px rgba($c-main, 0.8)
+//     h1
+//         font-size: 5rem
+//         color: $c-main
+//     h3
+//         color: $c-main
+//         font-size: 2rem
 
 
 /*~~~ SINGLE-PLAYER ~~~*/
@@ -158,19 +172,6 @@
             cursor: pointer
             width: 30px
             filter: invert(1)
-    
-    .pauseGame
-        position: absolute
-        margin-top: -5px
-        width: 400px
-        height: 600px
-        background-color: $c-dark
-        // display: flex
-        h1
-            color: white
-            margin: auto auto
-            font-size: 4rem
-            text-align: center
 
     #canvasPlay 
         box-shadow: 0 0 3px 3px $c-secondary1

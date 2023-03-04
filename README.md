@@ -37,7 +37,7 @@ TODO
 
 # cosmetic
 
-in game add animation when block piece drops 
+<!-- in game add animation when block piece drops  -->
 
 <!-- make a smooth small pop up in game menu that the multiplayer id was copied -->
 
@@ -50,12 +50,9 @@ in game add animation when block piece drops
 
 # gameplay
 
-change player state to useState for rerendering
-    create pause game fuction
-
 improve scoring and leveling system
 
-bug in draw shadow the shadow can go under other pieces
+<!-- bug in draw shadow the shadow can go under other pieces -->
 
 <!-- on multiplayer add options to create or join room
     - in the room you will paste an ID with which you can use to join another room
