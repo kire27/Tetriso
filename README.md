@@ -50,7 +50,7 @@ TODO
 
 # gameplay
 
-improve scoring and leveling system
+
 
 <!-- bug in draw shadow the shadow can go under other pieces -->
 

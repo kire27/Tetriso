@@ -65,11 +65,24 @@ function GameLogic(props: any) {
         let frameCount = 0;
         let animationFrameId: any;
 
-        if (pauseGame) return;
-        console.log(pauseGame)
+
+        const keysPressed = new Set();
+
+        document.addEventListener("keydown", e => {
+            keysPressed.add(e.code);
+            if (e.code === "Escape") setPauseGame(false)
+        });
+        document.addEventListener("keyup", e => {
+            keysPressed.delete(e.code);
+            playerControls.rotateLeft[1] = true;
+            playerControls.rotateRight[1] = true;
+            playerControls.hardDrop[1] = true;
+        });
+        
+        if (pauseGame) return
 
         const render = () => {
-            if (!connected) return 
+            // if (!connected) return
 
             frameCount++;                   
 
@@ -82,7 +95,7 @@ function GameLogic(props: any) {
                 frameCount = 0;
             }
 
-            if (frameCount % 9 === 0) playerKeyMove();
+            if (frameCount % 10 === 0) playerKeyMove(keysPressed);
 
             draw(context, canvas);
             drawShadow();
@@ -130,13 +143,6 @@ function GameLogic(props: any) {
         bi5: new Image(),
         bi6: new Image(),
         bi7: new Image(),
-
-        bih: new Image(),
-        bin1: new Image(),
-        bin2: new Image(),
-        bin3: new Image(),
-        bin4: new Image(),
-        bin5: new Image(),
     };
 
     blockImgs.bi1.src = blockColors.bc1;
@@ -210,40 +216,46 @@ function GameLogic(props: any) {
     const canvasBlockHolderRef = useRef();
     const canvasBlockNextRef = useRef();
 
+
+
     let keyIsDown = 0;
     let keyIsDownDuration = 70;
 
     const pieces = "IJLOSTZ";
 
-    interface playerTypes {
-        username: string,
-        level: number,
-        levelBreak: number,
-        score: number,
-        pos: object,
-        matrix: number[][],
-        followingMatrixes: string[],
-        arena: number[][], // Array(20).fill(null).map(() => Array(12).fill(0));
-        holdBlockType: string,
-        holdBlock: number[][],
-        holdBlockImg: string,
-        useHolder: boolean,
-    }
+    // interface playerTypes {
+    //     username: string,
+    //     level: number,
+    //     levelBreak: number,
+    //     score: number,
+    //     pos: object,
+    //     matrix: number[][],
+    //     followingMatrixes: string[],
+    //     arena: number[][], // Array(20).fill(null).map(() => Array(12).fill(0));
+    //     holdBlockType: string,
+    //     holdBlock: number[][],
+    //     holdBlockImg: string,
+    //     useHolder: boolean,
+    // }
 
     const [player, setPlayer] = useState({
         username: username as string,
         level: level as number,
-        levelBreak: 200,
+        levelBreak: 2000,
         score: 0,
+        lines: 0,
         pos: { x: 4, y: -6, sy: 19 },
-        matrix: createPiece(""),
-        followingMatrixes: [...Array(4)].map(
+        matrix: [] as number[][],
+        followingMatrixes: [...Array(3)].map(
             (_) => pieces[(pieces.length * Math.random()) | 0]
         ),
+        blockImgNext: [...Array(4)].map((_) => new Image()),
+        currentBlock: null as any,
         arena: createMatrix(18, 24), // Array(20).fill(null).map(() => Array(12).fill(0));
         holdBlockType: "",
         holdBlock: [] as number[][],
-        holdBlockImg: blockPieces.bp0,
+        allowToSwitchBlock: true,
+        // holdBlockImg: blockPieces.bp0,
     });
 
     const { arena } = player;
@@ -259,17 +271,7 @@ function GameLogic(props: any) {
         matrix: number[][];
     };
 
-    const keysPressed = new Set();
-
-    document.addEventListener("keydown", e => {
-        // console.log(e)
-        keysPressed.add(e.code);
-    });
-    document.addEventListener("keyup", e => {
-        keysPressed.delete(e.code);
-        playerControls.rotateLeft[1] = true;
-        playerControls.rotateRight[1] = true;
-    });
+    
 
     function arenaSweep() {
         let rowCount = 1;
@@ -284,7 +286,8 @@ function GameLogic(props: any) {
             const row = arena.splice(y, 1)[0].fill(0);
             arena.unshift(row);
             ++y;
-            player.score += rowCount * 10;
+            player.score += rowCount * 100;
+            player.lines += rowCount * 1;
             rowCount *= 2;
         }
         updateScore();
@@ -448,20 +451,21 @@ function GameLogic(props: any) {
 
     function drawBlockHolder(context: any, canvas: any) {
         context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(blockImgs.bih, 0, 0, canvas.width, canvas.width);
+        context.drawImage(player.blockImgNext[0], 0, 0, canvas.width, canvas.width);
     }
 
     function drawNextBlocks(context: any, canvas: any, bnS: number) {
         const cw = canvas.height;
 
-        blockImgs.bin1.src = blockHolderChange(player.followingMatrixes[0]);
-        blockImgs.bin2.src = blockHolderChange(player.followingMatrixes[1]);
-        blockImgs.bin3.src = blockHolderChange(player.followingMatrixes[2]);
+        player.blockImgNext[1].src = blockHolderChange(player.followingMatrixes[0]);
+        player.blockImgNext[2].src = blockHolderChange(player.followingMatrixes[1]);
+        player.blockImgNext[3].src = blockHolderChange(player.followingMatrixes[2]);
+
 
         context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(blockImgs.bin1, 0, 0, cw, cw);
-        context.drawImage(blockImgs.bin2, bnS * 1, 0, cw, cw);
-        context.drawImage(blockImgs.bin3, bnS * 2, 0, cw, cw);
+        context.drawImage(player.blockImgNext[1], 0, 0, cw, cw);
+        context.drawImage(player.blockImgNext[2], bnS * 1, 0, cw, cw);
+        context.drawImage(player.blockImgNext[3], bnS * 2, 0, cw, cw);
     }
 
     function drawShadow() {
@@ -527,13 +531,13 @@ function GameLogic(props: any) {
             arenaSweep();
         }
 
-        playerControls.hardDrop[1] = true;
         keyIsDown = keyIsDownDuration;
     }
 
     function playerDrop() {
         while (!collide(arena, player, player.pos.y)) {
             player.pos.y++;
+            player.score += 2;
         }
         player.pos.y--;
         merge(arena, player);
@@ -544,7 +548,7 @@ function GameLogic(props: any) {
     }
 
     function PlayerHold() {
-        blockImgs.bih.src = blockHolderChange(player.holdBlockType);
+        player.blockImgNext[0].src = blockHolderChange(player.holdBlockType);
 
         if (!player.holdBlock.length) {
             player.holdBlock = player.matrix;
@@ -555,16 +559,27 @@ function GameLogic(props: any) {
                 player.holdBlock,
             ];
 
-        [player.pos.x, player.pos.y] = [4, 0];
+        [player.pos.x, player.pos.y] = [8, 0];
 
         playerControls.hold[1] = false;
     }
 
-    function playerKeyMove() {
-        if (keysPressed.has(playerControls.pause)) pauseGame ? setPauseGame(false) : setPauseGame(true);
+    function playerKeyMove(keysPressed: any) {
+        if (keysPressed.has(playerControls.pause)) 
+            if (pauseGame) {
+                player.allowToSwitchBlock = true
+                setPauseGame(false); 
+            } else {
+                player.allowToSwitchBlock = false
+                setPauseGame(true);
+            }
+            
         if (keysPressed.has(playerControls.moveLeft)) playerMove(-1);
         if (keysPressed.has(playerControls.moveRight)) playerMove(1);
-        if (keysPressed.has(playerControls.softDrop)) playerDown();
+        if (keysPressed.has(playerControls.softDrop)) {
+            player.score++;
+            playerDown();
+        }
         if (keysPressed.has(playerControls.hardDrop[0]) && 
             playerControls.hardDrop[1]) playerDrop(); 
         if (keysPressed.has(playerControls.rotateLeft[0]) && 
@@ -585,6 +600,11 @@ function GameLogic(props: any) {
     }
 
     function playerReset() {
+        // console.log(pauseGame)
+        // if (pauseGame) return
+
+        //TODO BUG
+
         const randomPiece = pieces[(pieces.length * Math.random()) | 0];
         player.matrix = createPiece(player.followingMatrixes[0]);
         player.holdBlockType = player.followingMatrixes[0];
@@ -641,11 +661,10 @@ function GameLogic(props: any) {
     }
 
     function updateScore() {
-        const { score, level, levelBreak } = player;
+        const { score, level, levelBreak, lines } = player;
 
-        if (score >= levelBreak) {
-            player.level = level + Math.floor(score / 200);
-            player.levelBreak = levelBreak + 200;
+        if (level < lines/10) {
+            player.level = Math.floor(lines/10);
         }
 
         if (document.getElementById("gameScore") !== null) {
@@ -653,6 +672,8 @@ function GameLogic(props: any) {
                 .innerText = player.score.toString();
             document.getElementById("gameLevel")!
                 .innerText = player.level.toString();
+            document.getElementById("gameLines")!
+                .innerText = player.lines.toString();
         }
     }
 
@@ -676,6 +697,10 @@ function GameLogic(props: any) {
                         SCORE: {" "}
                         <span id="gameScore"></span>
                     </h4>
+                    <h4 id="gameLinesText" className="gameInfo">
+                        LINES: {" "}
+                        <span id="gameLines"></span>
+                    </h4>
                 </div>
 
                 <h2 className="gameInfo">{player.username}</h2>
@@ -685,7 +710,11 @@ function GameLogic(props: any) {
                 
                 <img src={homeIcon} className="gameIcon"  
                     alt="home" 
-                    onClick={()=> setStartGame(false)}/>
+                    onClick={()=> {
+                        setStartGame(false); 
+                        setPauseGame(false)
+                    }} 
+                />
             </div>
 
             {/* <PauseGame /> */}
