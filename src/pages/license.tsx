@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import arrowLeft from "../assets/icons/arr-left.svg";
+import licenseTxt from "../../LICENSE.txt";
 
 function License() {
 
-    const [licenseData, setLicenseData] = useState("");
+    useEffect(() => {
+        fetch(licenseTxt)
+        .then(response => response.text())
+        .then((data) => {
+            document.getElementById("text")!.innerText = data
+        })        
+    })
 
     const styling = {
         body: {
@@ -29,14 +36,9 @@ function License() {
         }  as React.CSSProperties,
         text: {
             margin: "1rem",
-            width: "70vw",
-            fontSize: "1.2rem",
+            fontSize: "1rem",
         }  as React.CSSProperties,
     }
-
-    fetch('../LICENSE.txt')
-        .then(response => response.text())
-        .then((data) => setLicenseData(data));
     
     return (
         <div style={styling.body}>
@@ -45,7 +47,7 @@ function License() {
                 TETRISO
             </a>
 
-            <div id="text" style={styling.text}>{licenseData}</div>
+            <div id="text" style={styling.text}></div>
         </div>
     );
 }
